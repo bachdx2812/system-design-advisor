@@ -2,7 +2,7 @@
 
 AI coding assistant skills for system design — powered by knowledge from [The Engineer's Handbook](https://bachdx-learning-hub.vercel.app/).
 
-> 25 chapters of system design knowledge distilled into **17 reference files** covering 100+ topics — **tested across 3 rounds against 100 real interview problems** (4.90/5 beginner, 4.25/5 intermediate accuracy). Plus 6 design pattern reference files covering GoF, modern, and distributed patterns. All skills generate **Mermaid diagrams** for architecture visualization.
+> 25 chapters of system design knowledge distilled into **18 reference files** covering 100+ topics — **tested across 5 rounds against 100+ problems** (4.7/5 system design, 4.1/5 design patterns). Plus 6 design pattern reference files covering GoF, modern, and distributed patterns. All skills generate **Mermaid diagrams** for architecture visualization.
 
 ## What's Included
 
@@ -65,7 +65,8 @@ Distilled from 25 chapters across 5 parts:
 - **Real-Time & Streaming** — WebRTC, SFU/MCU, Flink, time-series DBs, stream processing
 - **Storage & Infrastructure** — Object storage, HDFS, file sync, config management, LSM-tree, OLAP, ELK
 - **Specialized Systems** — Unique IDs, distributed locks, payments, stock exchange, game networking, spatial indexing
-- **Operational Troubleshooting** — Redis debugging (SLOWLOG, memory, stampede), Kafka (consumer lag, rebalancing), Postgres (pg_stat_statements, locks, vacuum), migration strategies (Strangler Fig, dual-write, canary)
+- **Collaborative & Multi-Tenant** — CRDTs vs OT, Yjs/Automerge, cursor presence, tenant isolation models, usage metering, subscription billing, quota enforcement
+- **Operational Troubleshooting** — Redis debugging (SLOWLOG, memory, cluster split-brain), Kafka (consumer lag, rebalancing), Postgres (pg_stat_statements, locks, vacuum), Elasticsearch health, S3 multipart, migration strategies
 
 ### Design Pattern References
 
@@ -169,22 +170,22 @@ cd system-design-advisor && git pull && bash install.sh
 
 ## Quality Validation
 
-Tested across **4 rounds** using 3 methods: reference coverage (100 problems), live response generation (20 problems), and workflow simulation (4 scenarios).
+Tested across **5 rounds** using 3 methods: reference coverage (100+ problems), live response generation (27 problems), and workflow simulation (4 scenarios).
 
 ### How We Tested
 
-1. **Reference Coverage** — Each of 100 system design problems evaluated: Does the reference cover it? How accurate? How actionable?
+1. **Reference Coverage** — Each of 100+ system design problems evaluated: Does the reference cover it? How accurate? How actionable?
 2. **Live Response Generation** — Skill generates a full response (trade-offs, diagrams, key numbers) which is then scored on accuracy, completeness, actionability, diagram quality, and practical value (1-5 each).
 3. **Workflow E2E** — Chain 2-4 skills in sequence (e.g., reviewer → advisor → implementation guide) and evaluate coherence, redundancy, and handoff quality.
 
-### Improvement Across 4 Rounds
+### Improvement Across 5 Rounds
 
-| Metric | R1 (8 refs) | R2 (12 refs) | R3 (16 refs) | R4 (23 refs) |
-|--------|------------|-------------|-------------|-------------|
-| Avg Accuracy | 3.08/5 | 4.18/5 | 4.41/5 | **4.88/5** |
-| Full Coverage | 31% | 61% | 80% | **95%** |
-| Zero-Coverage | 25% | 5% | 2% | **0%** |
-| Reference Files | 8 | 12 | 16 | **23** |
+| Metric | R1 (8 refs) | R2 (12 refs) | R3 (16 refs) | R4 (23 refs) | R5 (24 refs) |
+|--------|------------|-------------|-------------|-------------|-------------|
+| Avg Accuracy | 3.08/5 | 4.18/5 | 4.41/5 | 4.88/5 | **4.7/5** |
+| Full Coverage | 31% | 61% | 80% | 95% | **100%** |
+| Zero-Coverage | 25% | 5% | 2% | 0% | **0%** |
+| Reference Files | 8 | 12 | 16 | 23 | **24** |
 
 ### R4 Live Test: Sample Results
 
@@ -212,6 +213,8 @@ Tested across **4 rounds** using 3 methods: reference coverage (100 problems), l
 | Rapid A-vs-B Decisions (4 quick questions) | 2 skills | 3.5/5 |
 
 **R4 improvements:** TypeScript examples alongside Go, operational troubleshooting reference, context-aware workflow to reduce redundancy when chaining skills.
+
+**R5 improvements:** Collaborative editing & multi-tenant references, expanded operational troubleshooting (Redis cluster, ES health, S3 multipart), distributed task scheduler, event reliability patterns, composition over inheritance guide, refactoring recipes, timeout pattern.
 
 Full test reports and all 100 problems: [View on the handbook site](https://bachdx-learning-hub.vercel.app/skills#quality-validation)
 

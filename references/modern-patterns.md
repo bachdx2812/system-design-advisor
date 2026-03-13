@@ -51,8 +51,8 @@ Production-level patterns addressing real-world challenges: testability, failure
 - **Intent:** Allow third-party extensions without modifying core — registry + lifecycle hooks
 - **Components:** Plugin registry | API surface | lifecycle hooks (load/activate/dispose) | sandboxing
 - **Extension points:** Commands, UI elements, event listeners, middleware
+- **TS:** `interface Plugin { name: string; activate(api: HostAPI): void; dispose(): void }` / `class PluginRegistry { private plugins = new Map<string, Plugin>(); register(p: Plugin) { this.plugins.set(p.name, p); p.activate(this.api) } }`
 - **Real-world:** VS Code extensions, webpack loaders, ESLint rules
-- Go: `type Plugin interface { Name() string; Activate(api HostAPI); Deactivate() }`
 
 ## Functional Composition
 - **Intent:** Build complex transforms from simple, composable functions
@@ -69,12 +69,17 @@ Production-level patterns addressing real-world challenges: testability, failure
 - **Real-world:** LaunchDarkly, Unleash, Split.io
 - Example: `if flags.IsEnabled("new-checkout", user) { newCheckout(cart) } else { oldCheckout(cart) }`
 
+## Timeout
+- **Wrapping order:** `withTimeout(withRetry(withCircuitBreaker(fn)))` — Timeout outermost (hard deadline) → Retry middle → Circuit Breaker innermost (fail fast)
+- **TS:** `const withTimeout = (fn, ms) => Promise.race([fn(), sleep(ms).then(() => { throw new Error('timeout') })])`
+- **Compose rationale:** Timeout enforces hard SLA; Retry handles transient faults within that budget; CB stops calls when downstream is unhealthy
+
 ## Pattern Combinations
 
 | Combination | Purpose |
 |-------------|---------|
 | Repository + DI | Testable data access |
-| Circuit Breaker + Retry | Resilient external calls |
+| Circuit Breaker + Retry + Timeout | Full resilience stack for external calls |
 | Middleware + Decorator | Composable request processing |
 | Feature Flags + Strategy | Runtime behavior selection |
 

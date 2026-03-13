@@ -60,18 +60,9 @@
 - **Privacy**: per-friend visibility settings; ghost mode; location precision fuzzing (500m radius)
 - **Battery**: adaptive frequency (GPS when moving, cell tower when stationary); batch uploads
 
-## Email Delivery (transactional)
-- **Pipeline**: Event → Template render → Provider queue → ESP (SES/SendGrid) → Delivery
-- **Deliverability**: SPF + DKIM + DMARC records; dedicated IP with warmup (2-4 weeks); bounce rate <2%
-- **Bounce handling**: hard bounce → suppress list; soft bounce → retry 3x then suppress
-- **Rate limiting**: per-ESP rate limits; circuit breaker on provider failures
-
-## Notification System
-- Event → Notification Service → Channel Router → Provider Queue → Delivery
-- Channels: Push (APNs/FCM), Email (SES), SMS (Twilio), In-App (WebSocket)
-- Priority tiers: P0 instant, P1 near-real-time, P2 batched digests
-- User preferences: per-channel opt-in, quiet hours, frequency caps
-- Tracking: Sent → Delivered → Read; retry with exponential backoff + DLQ
+## Email & Notifications
+- **Email pipeline**: Event → Template render → ESP (SES/SendGrid) → Delivery; SPF+DKIM+DMARC; hard bounce → suppress; <2% bounce rate
+- **Notification**: Event → Channel Router → Provider Queue (Push/Email/SMS/In-App); P0 instant, P1 near-real-time, P2 digest; retry + DLQ
 
 ## Online Judge (LeetCode-style)
 - Submission → Queue → Sandbox executor (Docker/Firecracker) → Judge → Result
@@ -90,3 +81,10 @@
 - Delivery slots: time-window capacity planning; geofenced service areas
 - Last-mile: route optimization (TSP/VRP); driver assigned by proximity + capacity
 - Cold chain: temperature monitoring; separate frozen/chilled/ambient picking
+
+## Distributed Task Scheduler (Airflow-style)
+- **DAG engine:** topological sort → task queue → worker pool → status tracker
+- **Cron trigger:** hash-based partition of cron jobs across scheduler nodes (consistent hashing)
+- **Task state:** pending → queued → running → success / failed → retry
+- **Worker lease:** heartbeat every 10s; lease expiry = 30s; re-queue on timeout (dead worker detection)
+- **Backfill:** replay DAG for historical date range; tasks must be idempotent (safe to re-run)

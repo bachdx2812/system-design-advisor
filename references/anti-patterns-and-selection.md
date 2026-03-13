@@ -70,3 +70,16 @@
 | Middleware + Chain of Resp | HTTP request pipeline |
 | Strangler Fig + Facade | Legacy migration with routing |
 | Bulkhead + Circuit Breaker | Defense in depth for resilience |
+
+## Composition Over Inheritance
+- **Problem:** deep inheritance (>3 levels) → rigid hierarchies, fragile base class problem; change breaks subclasses
+- **Fix:** extract behaviors to interfaces + strategy objects; replace `extends` (is-a) with `has-a`
+- **Before:** `class PremiumGoldUser extends PremiumUser extends User` — adding behavior requires hierarchy changes
+- **After:** `class User { pricing: PricingStrategy; perks: PerksPolicy }` — swap strategies without touching User
+- **Migration steps:** 1) Identify shared behavior across levels 2) Extract to interfaces 3) Create strategy impls 4) Replace inheritance with constructor injection 5) Delete empty base classes
+- **When inheritance IS ok:** true is-a relationship, <3 levels deep, framework explicitly requires it
+
+## Refactoring Recipes
+- **God Object →** 1) List all responsibilities 2) Group by domain 3) Extract service per group 4) Wire via DI 5) Add Facade for backward compat
+- **Spaghetti →** 1) Add interfaces at module boundaries 2) Extract pure functions 3) Inject dependencies 4) Add integration tests first (safety net)
+- **Shotgun Surgery →** Extract shared logic to single module, enforce SRP so one change = one file

@@ -39,3 +39,28 @@
 - **Canary deployment:** route 1% → 5% → 25% → 100%; automated rollback on error rate spike or latency increase
 - **Database migration:** expand-contract: add new column → backfill → switch app to new column → drop old column
 - **Feature flags:** deploy code dark, enable per-user/percentage; instant rollback = disable flag; no redeploy needed
+
+## Redis Cluster Recovery
+- **Split-brain detection:** `CLUSTER INFO` → `cluster_state:fail`; nodes disagree on slot ownership
+- **Recovery:** `CLUSTER FAILOVER FORCE` on replica to promote; `CLUSTER RESET SOFT` to rejoin healed node
+- **Prevention:** `min-replicas-to-write 1`, `cluster-node-timeout 15000`; quorum prevents writes in minority partition
+- **Rejoin after partition:** node auto-rejoin when reachable; use `CLUSTER MEET` if gossip fails
+
+## Elasticsearch Cluster Health
+- **Green:** all primary + replica shards assigned; **Yellow:** primaries OK, some replicas unassigned; **Red:** primary shard missing (data loss risk)
+- **Unassigned shards:** `GET _cluster/allocation/explain` → root cause (disk, node, replica count)
+- **Disk watermarks:** 85% → stop allocating replicas; 90% → relocate shards; 95% → block writes
+- **Fix:** `PUT _cluster/settings {"transient":{"cluster.routing.allocation.disk.watermark.high":"92%"}}`; add nodes; `POST _cluster/reroute?retry_failed`
+
+## S3 Multipart Upload
+- **Part size:** 5MB min, 25-100MB optimal, max 10K parts per upload
+- **Retry per-part:** track ETag per part; retry only failed parts, not entire file
+- **Cleanup:** lifecycle rule `AbortIncompleteMultipartUpload` after 7 days (prevent storage waste)
+- **Performance:** transfer acceleration (CloudFront edge) for cross-region; parallel part upload (8-16 threads)
+- **Client-side upload:** pre-signed URLs per part; client uploads directly to S3; backend finalizes with `CompleteMultipartUpload`
+
+## Deploy-Specific Latency Diagnosis
+- **Cold cache:** after deploy, Redis/Memcached empty → pre-warm critical hot keys before traffic cut-over
+- **Connection pool startup:** DB pools not initialized → pre-initialize pools during health check readiness probe
+- **JIT/class loading (JVM):** first requests slow → send synthetic warmup requests before marking instance healthy
+- **DNS cache invalidation:** old TTL delays routing → set low TTL (30-60s) before deploy; raise after stabilize

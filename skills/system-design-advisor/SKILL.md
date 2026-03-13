@@ -73,6 +73,7 @@ Load the relevant reference(s) based on the question topic. If a question spans 
 | JWT, OAuth, SSO, SAML, OIDC, API keys, rate limiting, mTLS, RBAC/ABAC, secrets | [authentication-and-security-deep-dive.md](references/authentication-and-security-deep-dive.md) |
 | Parking lot, vending machine, elevator, leaderboard, LRU cache, SOLID, OOP design | [low-level-design-patterns.md](references/low-level-design-patterns.md) |
 | Redis debugging, Kafka lag, Postgres slow queries, operational troubleshooting, migration, capacity planning | [operational-troubleshooting.md](references/operational-troubleshooting.md) |
+| Collaborative editing, CRDTs, OT, multi-tenant, SaaS billing, subscription, usage metering | [collaborative-and-multi-tenant.md](references/collaborative-and-multi-tenant.md) |
 
 ## Response Format
 

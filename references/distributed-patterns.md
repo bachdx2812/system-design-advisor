@@ -72,6 +72,13 @@ Managing failure gracefully across multiple services with distributed data and e
 | Legacy integration | ACL | Prevent legacy model pollution |
 | Cascading resource exhaustion | Bulkhead | One slow dep killing all threads |
 
+## Event Reliability
+- **Ordering:** partition key guarantees per-partition order; use sequence numbers for cross-partition ordering
+- **Idempotency keys:** `hash(event_type + entity_id + timestamp)` → consumer deduplicates before processing
+- **Dead letter queue (DLQ):** max retries (3-5) → move to DLQ → alert + manual review; never silently drop
+- **Effectively exactly-once:** at-least-once delivery + idempotent consumer = no duplicate side-effects
+- **Poison message handling:** catch deserialization/processing errors → log with full context → skip or DLQ; never block partition
+
 ## Pattern Relationships
 ```
 CQRS ←→ Event Sourcing  (events sync read/write models)
