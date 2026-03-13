@@ -80,7 +80,15 @@ Distilled from 25 chapters across 5 parts:
 
 ## Installation
 
-### Claude Code (global)
+### Claude Code (plugin — recommended)
+
+```bash
+claude plugin add bachdx2812/system-design-advisor
+```
+
+After installing, invoke with `/system-design-advisor:system-design-advisor`, `/system-design-advisor:design-plan-generator`, etc.
+
+### Claude Code (global skills)
 
 ```bash
 # One-line install (or update)
