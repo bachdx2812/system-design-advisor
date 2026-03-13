@@ -159,15 +159,15 @@ cd system-design-advisor && git pull && bash install.sh
 
 ## Quality Validation
 
-Skills tested against **100 system design interview problems** across 3 rounds of iterative improvement:
+Tested across **4 rounds** using 3 methods: reference coverage (100 problems), live response generation (20 problems), and workflow simulation (4 scenarios).
 
-| Batch | # Problems | Difficulty | Avg Accuracy | Avg Actionable | Coverage |
-|-------|-----------|------------|-------------|----------------|---------|
-| Batch 1 | 20 | Beginner | **4.90** / 5 | **4.55** / 5 | **85%** |
-| Batch 2 | 20 | Intermediate | **4.25** / 5 | **4.10** / 5 | **75%** |
-| Batch 3-4 | 25 targeted | Intermediate–Advanced | **4.08** / 5 | **3.88** / 5 | **80%** |
+### How We Tested
 
-### Improvement Across 3 Rounds
+1. **Reference Coverage** — Each of 100 system design problems evaluated: Does the reference cover it? How accurate? How actionable?
+2. **Live Response Generation** — Skill generates a full response (trade-offs, diagrams, key numbers) which is then scored on accuracy, completeness, actionability, diagram quality, and practical value (1-5 each).
+3. **Workflow E2E** — Chain 2-4 skills in sequence (e.g., reviewer → advisor → implementation guide) and evaluate coherence, redundancy, and handoff quality.
+
+### Improvement Across 4 Rounds
 
 | Metric | R1 (8 refs) | R2 (12 refs) | R3 (16 refs) | R4 (23 refs) |
 |--------|------------|-------------|-------------|-------------|
@@ -176,9 +176,34 @@ Skills tested against **100 system design interview problems** across 3 rounds o
 | Zero-Coverage | 25% | 5% | 2% | **0%** |
 | Reference Files | 8 | 12 | 16 | **23** |
 
-**R4 improvements:** TypeScript code examples alongside Go, operational troubleshooting reference (Redis/Kafka/Postgres), context-aware workflow to reduce redundancy when chaining skills.
+### R4 Live Test: Sample Results
 
-Full test reports: [View on the handbook site](https://bachdx-learning-hub.vercel.app/skills#quality-validation)
+| Problem | Type | Score | Highlights |
+|---------|------|-------|-----------|
+| Kafka vs RabbitMQ (10K orders/day) | Interview | 5.0 | Correct recommendation, exactly-once pattern with sequence diagram |
+| URL Shortener (100M/day, <50ms p99) | Interview | 5.0 | KGS, latency budget breakdown, Bloom filter for invalid keys |
+| Postgres 90% CPU (50M rows, 5K QPS) | Real-world | 5.0 | 3-phase fix (indexes → cache → replicas), decision flowchart |
+| Idempotent payment webhooks (Stripe) | Real-world | 5.0 | Atomic ON CONFLICT pattern, race condition handling |
+| 3 microservices deadlocking shared DB | Real-world | 5.0 | Root cause (lock ordering), before/after architecture diagram |
+| API p99 spike (50ms → 2s) | Real-world | 5.0 | Parallel + async + cache + circuit breaker hierarchy |
+| Factory vs Abstract Factory | Interview | 5.0 | Decision criteria with Mermaid class diagram |
+| Saga for checkout (TypeScript) | Real-world | 5.0 | Full orchestrator code, compensating actions, tests |
+| God Object decomposition | Real-world | 4.6 | Facade + Strategy, step-by-step refactoring plan |
+
+**Overall: 4.88/5** — Real-world problems (5.0) scored higher than interview questions (4.76).
+
+### R4 Workflow E2E: Results
+
+| Scenario | Skills Used | Score |
+|----------|------------|-------|
+| Interview Prep (SQL/NoSQL → URL design → caching) | 3 skills | 4.3/5 |
+| E-Commerce Checkout (design → Saga → implement) | 3 skills | 4.5/5 |
+| Legacy Code Improvement (review → diagnose → fix → validate) | 4 skills | 4.5/5 |
+| Rapid A-vs-B Decisions (4 quick questions) | 2 skills | 3.5/5 |
+
+**R4 improvements:** TypeScript examples alongside Go, operational troubleshooting reference, context-aware workflow to reduce redundancy when chaining skills.
+
+Full test reports and all 100 problems: [View on the handbook site](https://bachdx-learning-hub.vercel.app/skills#quality-validation)
 
 ## Source
 
