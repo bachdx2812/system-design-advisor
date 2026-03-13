@@ -55,10 +55,24 @@ Load additional references based on domain:
 - Real-time/video/streaming → [real-time-and-streaming.md](references/real-time-and-streaming.md)
 - Storage/file sync/OLAP → [storage-and-infrastructure.md](references/storage-and-infrastructure.md)
 - Payments/IDs/locks/gaming/geo → [specialized-systems.md](references/specialized-systems.md)
+- Recommendations/ML/fraud/ads → [recommendation-and-ml-systems.md](references/recommendation-and-ml-systems.md)
+- Batch/stream processing/ETL/warehouse → [data-processing-and-analytics.md](references/data-processing-and-analytics.md)
+- Auth/OAuth/JWT/rate limiting → [authentication-and-security-deep-dive.md](references/authentication-and-security-deep-dive.md)
+- OOP design/parking lot/elevator/leaderboard → [low-level-design-patterns.md](references/low-level-design-patterns.md)
 
 - Define API endpoints (REST/gRPC)
 - Design data model (entities, relationships, access patterns)
-- Draw component diagram: clients → LB → app servers → cache → DB → queue
+- **Draw Mermaid architecture diagram** showing all components and data flow:
+  ```mermaid
+  graph LR
+      Client --> LB[Load Balancer]
+      LB --> API[API Servers]
+      API --> Cache[(Redis)]
+      API --> DB[(Primary DB)]
+      API --> Queue[Message Queue]
+      Queue --> Workers[Workers]
+  ```
+  Use `graph LR` for architecture, `sequenceDiagram` for API flows, `erDiagram` for data models
 - Justify each component added
 
 ### Step 4: Deep Dive

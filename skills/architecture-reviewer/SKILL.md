@@ -87,6 +87,14 @@ Reference: [architecture-patterns.md](references/architecture-patterns.md)
 |---|----------|----------|---------|----------------|
 | 1 | ... | Critical/High/Medium/Low | ... | ... |
 
+### Current Architecture Diagram
+[Mermaid diagram of discovered components and their relationships]
+```mermaid
+graph TD
+    Client --> API
+    API --> DB[(Database)]
+```
+
 ### Summary
 - **Strengths:** [What's done well]
 - **Top 3 Improvements:** [Prioritized recommendations]

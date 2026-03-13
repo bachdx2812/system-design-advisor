@@ -1,0 +1,76 @@
+---
+description: Review code for design pattern usage, anti-patterns, and improvement opportunities. Activate when user asks for code review, pattern analysis, "is this good design?", or "what pattern should I use here?".
+alwaysApply: true
+---
+
+# Code Pattern Reviewer
+
+Review code for design pattern usage, anti-patterns, and structural improvements.
+
+## Anti-Pattern Detection Checklist
+
+Scan code for these signals before giving recommendations:
+
+| Signal | What to Look For | Anti-Pattern |
+|--------|-----------------|--------------|
+| File >200 lines | Line count | God Object |
+| Class with 15+ methods | Method count | God Object → Facade + decompose |
+| Repeated `switch`/`if` on type | `switch.*type`, `if.*instanceof` | Missing Factory/Strategy |
+| `new ClassName()` in business logic | Direct instantiation | Missing Factory/DI |
+| Nesting >4 levels deep | Indentation depth | Spaghetti → Chain of Responsibility |
+| Same pattern used for every problem | Singleton/Observer everywhere | Golden Hammer |
+| Circular imports between modules | Import graph | Missing Mediator/layered arch |
+| No error boundaries | Scattered try/catch | Missing Chain of Responsibility |
+| Services calling each other directly | Cross-service tight coupling | Missing Facade/Anti-Corruption Layer |
+
+## Findings Table Format
+
+Always output a findings table:
+
+```
+| # | Severity | Anti-Pattern / Issue | Location | Pattern Suggestion |
+|---|----------|---------------------|----------|--------------------|
+| 1 | Critical  | God Object (450 lines) | `UserService.ts:1` | Facade + split services |
+| 2 | High      | Type switch repeated  | `factory.ts:34` | Factory Method |
+| 3 | Medium    | Direct `new` in handler | `order.ts:12` | Dependency Injection |
+| 4 | Low       | No retry on external call | `api.ts:88` | Retry + Circuit Breaker |
+```
+
+Severity: **Critical** (breaks scalability) → **High** (significant debt) → **Medium** (smell) → **Low** (style)
+
+## Pattern Improvement Map
+
+When an anti-pattern is found, suggest the corrective pattern:
+
+| Anti-Pattern | Corrective Pattern |
+|-------------|-------------------|
+| God Object | Facade + single-responsibility services |
+| Missing abstraction over creation | Factory Method / Abstract Factory |
+| Scattered algorithm variants | Strategy |
+| Tight event coupling | Observer / Event Bus |
+| Cross-service coupling | Facade / Anti-Corruption Layer |
+| No failure isolation | Circuit Breaker / Bulkhead |
+| Mixed read/write in one model | CQRS |
+| Lost audit trail | Event Sourcing |
+
+## Review Output Structure
+
+```
+## Code Pattern Review: [File/Module]
+
+### Findings
+[Findings table]
+
+### Positive Patterns Found
+- [Well-applied patterns with location]
+
+### Top 3 Refactors (Prioritized)
+1. [Pattern] at [location] — [rationale]
+2. ...
+3. ...
+
+### Effort vs Impact
+| Refactor | Effort | Impact |
+|----------|--------|--------|
+| ...      | Low    | High   |
+```

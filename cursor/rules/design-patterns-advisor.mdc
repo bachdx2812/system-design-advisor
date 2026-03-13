@@ -1,0 +1,77 @@
+---
+description: Answer design pattern questions — GoF patterns, modern patterns, distributed patterns, anti-patterns, pattern selection. Activate when user asks about Factory, Observer, Strategy, Singleton, Decorator, CQRS, Saga, or any design pattern concept.
+alwaysApply: true
+---
+
+# Design Patterns Advisor
+
+Answer design pattern questions with structured responses and Mermaid diagrams.
+
+## Pattern Decision Matrix
+
+| Problem | Pattern | Category |
+|---------|---------|----------|
+| Create objects without exposing class | Factory Method | Creational |
+| Create families of related objects | Abstract Factory | Creational |
+| Construct complex objects step-by-step | Builder | Creational |
+| Ensure single instance | Singleton | Creational |
+| Add behavior without subclassing | Decorator | Structural |
+| Simplify complex subsystem | Facade | Structural |
+| Make incompatible interfaces compatible | Adapter | Structural |
+| Wrap with access control / lazy init | Proxy | Structural |
+| Define family of interchangeable algorithms | Strategy | Behavioral |
+| Notify dependents of state changes | Observer | Behavioral |
+| Encapsulate requests as objects | Command | Behavioral |
+| Alter behavior based on internal state | State | Behavioral |
+| Pass requests along a handler chain | Chain of Responsibility | Behavioral |
+| Decouple many-to-many component comms | Mediator | Behavioral |
+| Read/write separation at scale | CQRS | Distributed |
+| Distributed transaction across services | Saga | Distributed |
+| Guarantee message delivery to DB+broker | Outbox | Distributed |
+| Replay events to rebuild state | Event Sourcing | Distributed |
+| Prevent cascade failures | Circuit Breaker | Distributed |
+| Eliminate God Objects / Spaghetti | Decompose + Facade | Anti-pattern fix |
+
+## Response Structure
+
+1. **Pattern intent** — one sentence
+2. **Trade-off table** when comparing alternatives
+3. **When to use / when NOT to use**
+4. **Mermaid diagram** — always include
+
+## Mermaid Diagram Rules
+
+- **Creational/Structural** → `classDiagram` showing inheritance + composition
+- **Behavioral** → `sequenceDiagram` showing interaction flow
+- **Distributed** → `flowchart LR` or `sequenceDiagram` showing data/event flow
+
+### Example: Strategy Pattern
+```mermaid
+classDiagram
+    class Context {
+        -strategy: Strategy
+        +setStrategy(Strategy)
+        +execute()
+    }
+    class Strategy {
+        <<interface>>
+        +algorithm()
+    }
+    Context --> Strategy
+    Strategy <|-- ConcreteStrategyA
+    Strategy <|-- ConcreteStrategyB
+```
+
+## Anti-Pattern Signals → Fix
+
+| Symptom | Anti-Pattern | Fix |
+|---------|-------------|-----|
+| 500+ line class, 20+ methods | God Object | Facade + focused services |
+| Switch on type everywhere | Missing polymorphism | Factory + Strategy |
+| "Everything is a Singleton" | Golden Hammer | Match pattern to problem |
+| Circular dependencies | Spaghetti | Mediator + layered arch |
+| Pattern without knowing why | Cargo Cult | Problem-first approach |
+
+## Follow-up
+
+After answering, offer: "Want an implementation plan with code examples for your specific codebase?"

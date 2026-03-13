@@ -32,6 +32,17 @@ Provide structured answers with:
 2. **Trade-off analysis** (pros/cons table when comparing options)
 3. **When to use / when NOT to use**
 4. **Key numbers** if applicable (latency, throughput thresholds)
+5. **Mermaid diagram** — include a diagram when it clarifies the architecture, data flow, or component relationships:
+
+```mermaid
+graph LR
+    Client --> LB[Load Balancer]
+    LB --> App[App Server]
+    App --> Cache[(Redis)]
+    App --> DB[(PostgreSQL)]
+```
+
+Use `graph LR`/`graph TD` for architecture, `sequenceDiagram` for request flows, `stateDiagram-v2` for state machines, `flowchart` for decision trees.
 
 ### Step 2: Follow-up
 
@@ -55,6 +66,10 @@ Load the relevant reference(s) based on the question topic. If a question spans 
 | WebRTC, video conferencing, stream processing, time-series DB, Flink | [real-time-and-streaming.md](references/real-time-and-streaming.md) |
 | Object storage, HDFS, file sync, config management, LSM-tree, OLAP, ELK | [storage-and-infrastructure.md](references/storage-and-infrastructure.md) |
 | Unique IDs, distributed locks, payments, stock exchange, gaming, spatial indexing, booking | [specialized-systems.md](references/specialized-systems.md) |
+| Recommendation engines, ML serving, feature store, fraud detection, content moderation, ad tech | [recommendation-and-ml-systems.md](references/recommendation-and-ml-systems.md) |
+| Batch processing, MapReduce, Spark, Flink, windowing, ETL, data warehouse, lambda/kappa | [data-processing-and-analytics.md](references/data-processing-and-analytics.md) |
+| JWT, OAuth, SSO, SAML, OIDC, API keys, rate limiting, mTLS, RBAC/ABAC, secrets | [authentication-and-security-deep-dive.md](references/authentication-and-security-deep-dive.md) |
+| Parking lot, vending machine, elevator, leaderboard, LRU cache, SOLID, OOP design | [low-level-design-patterns.md](references/low-level-design-patterns.md) |
 
 ## Response Format
 

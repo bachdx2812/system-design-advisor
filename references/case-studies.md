@@ -54,6 +54,18 @@
 - Conflict: last-writer-wins or save both versions
 - Notification: long-polling/WebSocket for cross-device sync
 
+## Nearby Friends (real-time location sharing)
+- User publishes location → fan-out to friend list via Redis Pub/Sub per user channel
+- **Storage**: Redis GEO (GEOADD/GEOSEARCH) for proximity queries; TTL on location keys (expire if offline)
+- **Privacy**: per-friend visibility settings; ghost mode; location precision fuzzing (500m radius)
+- **Battery**: adaptive frequency (GPS when moving, cell tower when stationary); batch uploads
+
+## Email Delivery (transactional)
+- **Pipeline**: Event → Template render → Provider queue → ESP (SES/SendGrid) → Delivery
+- **Deliverability**: SPF + DKIM + DMARC records; dedicated IP with warmup (2-4 weeks); bounce rate <2%
+- **Bounce handling**: hard bounce → suppress list; soft bounce → retry 3x then suppress
+- **Rate limiting**: per-ESP rate limits; circuit breaker on provider failures
+
 ## Notification System
 - Event → Notification Service → Channel Router → Provider Queue → Delivery
 - Channels: Push (APNs/FCM), Email (SES), SMS (Twilio), In-App (WebSocket)

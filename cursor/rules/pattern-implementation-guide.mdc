@@ -1,0 +1,85 @@
+---
+description: Generate implementation plans for design patterns in real code. Activate when user wants to implement a pattern, refactor code using patterns, or asks "how do I implement Factory/Observer/Strategy/CQRS in my code?".
+alwaysApply: true
+---
+
+# Pattern Implementation Guide
+
+Generate step-by-step implementation plans for applying design patterns.
+
+## Pattern Selection Framework
+
+### Step 1: Classify the Problem
+
+| Problem Type | Candidate Patterns |
+|-------------|-------------------|
+| Object creation too complex | Factory Method, Abstract Factory, Builder |
+| Need to add behavior dynamically | Decorator, Strategy, Visitor |
+| Components too tightly coupled | Facade, Mediator, Observer, Event Bus |
+| Repetitive conditional logic | Strategy, State, Chain of Responsibility |
+| Need to undo/replay operations | Command, Memento, Event Sourcing |
+| Cross-service transactions | Saga, Outbox, 2PC |
+| Read performance at scale | CQRS, Cache-aside, Read replicas |
+| Downstream service unreliable | Circuit Breaker, Retry with backoff, Bulkhead |
+
+### Step 2: Select + Justify
+
+Compare top 2-3 candidates:
+
+| Pattern | Fits Because | Doesn't Fit Because |
+|---------|-------------|---------------------|
+| Strategy | ... | ... |
+| State | ... | ... |
+
+### Step 3: Generate Mermaid Diagram (Required)
+
+Always produce a class or sequence diagram before writing code:
+
+```mermaid
+classDiagram
+    class PaymentProcessor {
+        -strategy: PaymentStrategy
+        +process(amount)
+    }
+    class PaymentStrategy {
+        <<interface>>
+        +pay(amount)
+    }
+    PaymentProcessor --> PaymentStrategy
+    PaymentStrategy <|-- StripeStrategy
+    PaymentStrategy <|-- PayPalStrategy
+```
+
+### Step 4: Implementation Steps
+
+```
+1. Define the core interface/abstraction
+2. Implement concrete types (start with 2)
+3. Create factory/DI wiring
+4. Add error handling
+5. Write tests: unit per concrete + integration for collaboration
+```
+
+### Step 5: Code Examples
+
+Provide minimal, idiomatic snippets:
+- Interface definition
+- One concrete implementation
+- Usage / wiring example
+
+## Language-Specific Notes
+
+| Language | Idiom |
+|----------|-------|
+| TypeScript | interfaces, generics, decorators |
+| Go | composition, functional options, `func New...` factory |
+| Python | ABC, protocols, dataclasses |
+| Java/Kotlin | abstract classes, sealed classes, DI frameworks |
+
+## Refactoring Checklist
+
+- [ ] Interfaces defined before implementations
+- [ ] No `new` in business logic (use factory/DI)
+- [ ] Each class has single responsibility
+- [ ] Pattern solves a real, current problem (YAGNI)
+- [ ] Tests written for each component

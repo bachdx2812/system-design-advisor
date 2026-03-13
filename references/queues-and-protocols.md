@@ -50,6 +50,12 @@
 | Streaming | No (SSE workaround) | Subscriptions | Native bidirectional |
 | Best for | Public APIs, web | Mobile, complex UIs | Internal microservices |
 
+## Kafka Internals
+- **ISR (In-Sync Replicas):** subset of replicas caught up with leader; writes ACKed when all ISR confirm
+- **Log compaction:** retain latest value per key; useful for changelog topics (KTable)
+- **Consumer group rebalancing:** cooperative incremental (Kafka 2.4+) avoids stop-the-world
+- **Partition leadership:** controller broker assigns leaders; ZooKeeper→KRaft migration
+
 ## HTTP Idempotency
 - **Idempotent (safe to retry):** GET, PUT, DELETE
 - **Not idempotent:** POST (use idempotency keys for payments)

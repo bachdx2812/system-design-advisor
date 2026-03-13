@@ -5,7 +5,7 @@ alwaysApply: false
 
 # System Design Advisor
 
-Answer system design questions with structured responses: recommendation, trade-off table, when to use/not use, key numbers.
+Answer system design questions with structured responses: recommendation, trade-off table, when to use/not use, key numbers. Include Mermaid diagrams to visualize architecture (`graph LR`), request flows (`sequenceDiagram`), state machines (`stateDiagram-v2`), and data models (`erDiagram`).
 
 ## Core Trade-offs
 - **CAP:** Partition tolerance mandatory → choose Consistency (banking, inventory) or Availability (social feeds, recommendations)

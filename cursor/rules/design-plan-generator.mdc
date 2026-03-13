@@ -25,7 +25,7 @@ State assumptions explicitly. Round aggressively.
 ## Step 3: High-Level Design (20 min)
 1. Define API endpoints and contracts
 2. Design data model (entities, relationships, access patterns)
-3. Draw component diagram: clients → LB → app → cache → DB → queue
+3. Draw Mermaid architecture diagram (`graph LR` for components, `sequenceDiagram` for flows, `erDiagram` for data models)
 4. Walk through critical user journey end-to-end
 5. Justify each component added
 

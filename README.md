@@ -2,15 +2,25 @@
 
 AI coding assistant skills for system design — powered by knowledge from [The Engineer's Handbook](https://bachdx-learning-hub.vercel.app/).
 
-> 25 chapters of system design knowledge distilled into 12 reference files covering 100+ system design topics — tested against 100 real interview problems.
+> 25 chapters of system design knowledge distilled into **16 reference files** covering 100+ topics — **tested across 3 rounds against 100 real interview problems** (4.90/5 beginner, 4.25/5 intermediate accuracy). Plus 6 design pattern reference files covering GoF, modern, and distributed patterns. All skills generate **Mermaid diagrams** for architecture visualization.
 
 ## What's Included
+
+### System Design Skills
 
 | Skill | Description | Trigger |
 |-------|------------|---------|
 | **system-design-advisor** | Answer system design questions, explain tradeoffs, component selection | "Should I use SQL or NoSQL?", "Explain CAP theorem" |
 | **design-plan-generator** | Generate step-by-step system design plans using 4-step framework | "Design a URL shortener", "Architect a chat system" |
 | **architecture-reviewer** | Auto-scan and review project architecture against best practices | "Review my architecture", "Is this scalable?" |
+
+### Design Pattern Skills
+
+| Skill | Description | Trigger |
+|-------|------------|---------|
+| **design-patterns-advisor** | Answer questions about GoF, modern, and distributed design patterns with Mermaid diagrams | "When should I use Factory vs Builder?", "Explain Observer pattern" |
+| **pattern-implementation-guide** | Generate implementation plans with code examples and class diagrams for applying patterns | "How do I implement Strategy pattern in TypeScript?", "Add CQRS to my service" |
+| **code-pattern-reviewer** | Auto-scan code for anti-patterns, God Objects, and pattern improvement opportunities | "Review my code for patterns", "Is this good design?" |
 
 ### Interactive Clarifying Questions
 
@@ -21,6 +31,8 @@ All skills ask targeted questions before responding to deliver more relevant ans
 - **architecture-reviewer** — Gathers context about your scale targets, top concerns, SLA, and planned changes before scanning. Say "just scan it" to skip.
 
 ## Knowledge Base
+
+### System Design References
 
 Distilled from 25 chapters across 5 parts:
 
@@ -34,46 +46,59 @@ Distilled from 25 chapters across 5 parts:
 - **Storage & Infrastructure** — Object storage, HDFS, file sync, config management, LSM-tree, OLAP, ELK
 - **Specialized Systems** — Unique IDs, distributed locks, payments, stock exchange, game networking, spatial indexing
 
+### Design Pattern References
+
+6 reference files covering software design patterns:
+
+- **creational-patterns.md** — Factory Method, Abstract Factory, Builder, Prototype, Singleton
+- **structural-patterns.md** — Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy
+- **behavioral-patterns.md** — Strategy, Observer, Command, State, Chain of Responsibility, Mediator, Iterator, Visitor, Template Method, Memento
+- **modern-patterns.md** — Functional patterns, Dependency Injection, Options pattern, Plugin architecture
+- **distributed-patterns.md** — CQRS, Event Sourcing, Saga, Outbox, Circuit Breaker, Bulkhead, Anti-Corruption Layer
+- **anti-patterns-and-selection.md** — God Object, Spaghetti Code, Golden Hammer, Cargo Cult, pattern selection guide
+
 ## Installation
 
-### Claude Code
-
-**Option 1: Copy skills (recommended)**
+### Claude Code (global)
 
 ```bash
-# Clone the repo
+# One-line install (or update)
+bash <(curl -s https://raw.githubusercontent.com/bachdx2812/system-design-advisor/main/install.sh)
+```
+
+Or manually:
+
+```bash
 git clone https://github.com/bachdx2812/system-design-advisor.git
-
-# Copy skills + references to your Claude Code skills directory
-cp -r system-design-advisor/skills/* ~/.claude/skills/
-cp -r system-design-advisor/references ~/.claude/skills/system-design-advisor/
-cp -r system-design-advisor/references ~/.claude/skills/design-plan-generator/
-cp -r system-design-advisor/references ~/.claude/skills/architecture-reviewer/
+cd system-design-advisor && bash install.sh
 ```
 
-**Option 2: Project-level install**
+After installing, invoke with `/system-design-advisor`, `/design-plan-generator`, `/architecture-reviewer`, `/design-patterns-advisor`, `/pattern-implementation-guide`, or `/code-pattern-reviewer`.
+
+### Claude Code (project-level)
 
 ```bash
-# In your project directory
+git clone https://github.com/bachdx2812/system-design-advisor.git
 cp -r system-design-advisor/skills/* .claude/skills/
-cp -r system-design-advisor/references .claude/skills/system-design-advisor/
-cp -r system-design-advisor/references .claude/skills/design-plan-generator/
-cp -r system-design-advisor/references .claude/skills/architecture-reviewer/
+for skill in system-design-advisor design-plan-generator architecture-reviewer design-patterns-advisor pattern-implementation-guide code-pattern-reviewer; do
+  cp -r system-design-advisor/references .claude/skills/$skill/
+done
 ```
-
-After installing, the skills appear as `/system-design-advisor`, `/design-plan-generator`, and `/architecture-reviewer` in Claude Code.
 
 ### Cursor
 
 ```bash
-# Clone the repo
 git clone https://github.com/bachdx2812/system-design-advisor.git
-
-# Copy rules to your project
-cp -r system-design-advisor/cursor/rules/* .cursor/rules/
+cd system-design-advisor && bash install-cursor.sh
 ```
 
 Rules auto-activate based on your prompts — no manual invocation needed.
+
+### Update
+
+```bash
+cd system-design-advisor && git pull && bash install.sh
+```
 
 ## Usage Examples
 
@@ -94,23 +119,41 @@ Rules auto-activate based on your prompts — no manual invocation needed.
 ```
 (Auto-scans your project and produces a findings table)
 
+### Design Patterns Advisor
+```
+> /design-patterns-advisor
+> When should I use Factory vs Builder pattern?
+```
+
+### Pattern Implementation Guide
+```
+> /pattern-implementation-guide implement Observer pattern for my event system in TypeScript
+```
+
+### Code Pattern Reviewer
+```
+> /code-pattern-reviewer
+```
+(Auto-scans your project code and produces a findings table with pattern recommendations)
+
 ## Quality Validation
 
-Skills were tested against **100 well-known system design interview problems** across 4 difficulty levels:
+Skills tested against **100 system design interview problems** across 3 rounds of iterative improvement:
 
-| Batch | Problems | Avg Accuracy | Avg Actionability | Coverage |
-|-------|----------|-------------|-------------------|----------|
-| Beginner (1-20) | Rate Limiter, URL Shortener, Web Crawler, Chat... | 4.15/5 | 4.10/5 | 85% |
-| Intermediate A (21-40) | News Feed, Ride Sharing, Payment, Kafka... | 3.55/5 | 3.45/5 | 85% |
-| Intermediate B (41-60) | Search Engine, Spotify, Zoom, YouTube... | 2.95/5 | 2.80/5 | 85% |
-| Advanced (61-80) | Google Maps, HDFS, Blockchain, ML Pipeline... | 3.05/5 | 2.95/5 | 80% |
-| Expert (81-100) | YouTube Rec Engine, Google Search, Twitter Scale... | 2.25/5 | 2.15/5 | 55% |
+| Batch | # Problems | Difficulty | Avg Accuracy | Avg Actionable | Coverage |
+|-------|-----------|------------|-------------|----------------|---------|
+| Batch 1 | 20 | Beginner | **4.90** / 5 | **4.55** / 5 | **85%** |
+| Batch 2 | 20 | Intermediate | **4.25** / 5 | **4.10** / 5 | **75%** |
+| Batch 3-4 | 25 targeted | Intermediate–Advanced | **4.08** / 5 | **3.88** / 5 | **80%** |
 
-**Post-test improvements applied:**
-- Added 4 new reference files (search, real-time, storage, specialized systems)
-- Expanded case studies (web crawler, file sync, notifications)
-- Added locking strategies, OLAP/OLTP, 2PC, API gateway patterns
-- Updated topic routing to cover 12 reference files
+### Improvement Across 3 Rounds
+
+| Metric | R1 (8 refs) | R2 (12 refs) | R3 (16 refs) |
+|--------|------------|-------------|-------------|
+| Avg Accuracy | 3.08/5 | 4.18/5 | **4.41/5** |
+| Full Coverage | 31% | 61% | **80%** |
+| Zero-Coverage | 25% | 5% | **2%** |
+| Reference Files | 8 | 12 | **16** |
 
 Full test reports: [View on the handbook site](https://bachdx-learning-hub.vercel.app/skills#quality-validation)
 
