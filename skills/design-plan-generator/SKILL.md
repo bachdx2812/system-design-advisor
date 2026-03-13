@@ -28,6 +28,8 @@ Execute these 4 steps in order. Load references as needed.
 
 **If user provides `$ARGUMENTS` with enough detail** (e.g., "Design a URL shortener for 100M DAU with <100ms p99"), reduce to 1-2 confirmation questions.
 
+**Context awareness:** If prior skill output is visible in conversation (advisor explanation, reviewer findings), reference it and jump straight to your unique value — skip re-explaining the problem or pattern theory.
+
 After collecting answers, proceed with:
 
 **Functional:** What must the system do? List 3-5 core features.

@@ -6,17 +6,20 @@ How objects communicate, delegate responsibilities, and coordinate — how contr
 ## Observer
 - **Intent:** One-to-many dependency — when one object changes, all dependents notified
 - **Go idiom:** Channels or callback registry
+- **TS:** `type Listener<T> = (event: T) => void` / `class EventEmitter<T> { private ls: Listener<T>[] = []; on(l: Listener<T>) { this.ls.push(l) } emit(e: T) { this.ls.forEach(l => l(e)) } }`
 - **When to use:** Loose coupling, multiple reactions to single event, event-driven
 - **Real-world:** Webhooks, message queues, DOM events, React state
 
 ## Strategy
 - **Intent:** Define family of algorithms, encapsulate each, make interchangeable
 - **Go idiom:** `type Sorter func([]int) []int` or interface
+- **TS:** `type PaymentStrategy = (amount: number) => Promise<Receipt>` / `const stripe: PaymentStrategy = async (amt) => stripeApi.charge(amt)`
 - **When to use:** Multiple implementations of same concept, runtime selection
 - **Real-world:** `sort.Interface`, payment processors, compression algorithms
 
 ## Command
 - **Intent:** Encapsulate request as object — enables queuing, undo, logging
+- **TS:** `interface Command { execute(): void; undo(): void }` / `class AddTextCmd implements Command { constructor(private doc: Doc, private text: string, private prev = '') {} execute() { this.prev = this.doc.content; this.doc.content += this.text } undo() { this.doc.content = this.prev } }`
 - **When to use:** Task queues, undo/redo, macro recording, transaction logs
 - **Real-world:** CLI subcommands (cobra), task queues, database migrations
   ```go

@@ -23,18 +23,21 @@ Production-level patterns addressing real-world challenges: testability, failure
       return &OrderService{repo: repo, notifier: notifier}
   }
   ```
+- **TS:** `class OrderService { constructor(private repo: OrderRepo, private notifier: Notifier) {} }` / `class Container { bind<T>(token: symbol, f: () => T) {} resolve<T>(token: symbol): T {} }`
 - **Go frameworks:** Google Wire (compile-time), Uber fx (runtime)
 - **When to use:** Always — foundational to testable code
 
 ## Middleware / Pipeline
 - **Intent:** Composable chain of handlers for cross-cutting concerns
 - **Solution:** `handler := WithAuth(WithLogging(WithRateLimit(actualHandler)))`
+- **TS:** `type Middleware = (req: Request, next: () => Promise<Response>) => Promise<Response>` / `const withAuth: Middleware = (req, next) => req.headers.authorization ? next() : Promise.reject(401)`
 - **When to use:** Auth, logging, rate limiting, CORS
 - **Real-world:** `net/http`, gin/echo/chi frameworks, gRPC interceptors
 
 ## Circuit Breaker
 - **Intent:** Prevent cascading failures by failing fast when downstream is unhealthy
 - **States:** Closed (normal) → Open (fail fast) → Half-Open (probe single request)
+- **TS:** `class CircuitBreaker { constructor(private threshold: number, private failures = 0, private open = false) {} async call<T>(fn: () => Promise<T>): Promise<T> { if (this.open) throw new Error('open'); try { const r = await fn(); this.failures = 0; return r } catch(e) { if (++this.failures >= this.threshold) this.open = true; throw e } } }`
 - **When to use:** Any external service dependency, database connections, API calls
 - **Real-world:** `gobreaker`, Hystrix, Resilience4j
 

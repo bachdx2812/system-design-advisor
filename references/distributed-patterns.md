@@ -22,6 +22,7 @@ Managing failure gracefully across multiple services with distributed data and e
 - **Choreography:** Services react to events (decentralized, hard to track)
 - **Orchestration:** Central coordinator (easier to reason, single point of failure)
 - **Compensating transactions:** Undo on failure (e.g., refund if shipping fails)
+- **TS:** `class OrderSaga { async run(order: Order) { await paymentSvc.charge(order); await inventorySvc.reserve(order); await shippingSvc.ship(order) } async compensate(order: Order) { await shippingSvc.cancel(order); await inventorySvc.release(order); await paymentSvc.refund(order) } }`
 - **When to use:** Multi-service workflows, eventual consistency acceptable
 - **Real-world:** Order processing (order → payment → inventory → shipping)
 
@@ -43,6 +44,7 @@ Managing failure gracefully across multiple services with distributed data and e
 - **vs direct publish:** Reliable (no lost events) but slightly higher latency
 - **When to use:** Any service publishing events alongside DB writes
 - SQL: `INSERT INTO outbox(event_type, payload) VALUES(...) -- same tx as business write`
+- **TS:** `async createOrder(order: Order) { await db.transaction(tx => { tx.insert('orders', order); tx.insert('outbox', { type: 'OrderCreated', payload: order }) }) }`
 
 ## Anti-Corruption Layer (ACL)
 - **Intent:** Translation layer between legacy and new domain models — prevent legacy concepts leaking in

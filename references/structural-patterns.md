@@ -6,6 +6,7 @@ How objects compose into larger structures while keeping flexibility. Key distin
 ## Adapter
 - **Intent:** Translate incompatible interface to expected one
 - **Go idiom:** Struct wrapping foreign type, implementing local interface
+- **TS:** `class XMLtoJSONAdapter implements JSONApi { constructor(private legacy: XMLApi) {} getData() { return xmlToJson(this.legacy.fetch()) } }`
 - **When to use:** Integrate third-party libraries, legacy system wrapping
 - **Real-world:** Payment gateway adapters (Stripe/PayPal → common PaymentProcessor)
 
@@ -20,6 +21,7 @@ How objects compose into larger structures while keeping flexibility. Key distin
       })
   }
   ```
+- **TS:** `const withLogging = (svc: Service): Service => ({ execute: (req) => { console.info(req); return svc.execute(req) } })`
 - **When to use:** Cross-cutting concerns, optional features, stackable behaviors
 - **Real-world:** HTTP middleware (auth → logging → CORS → handler)
 
@@ -42,6 +44,7 @@ How objects compose into larger structures while keeping flexibility. Key distin
   type Leaf struct { Name string }
   type Composite struct { Children []Component }
   ```
+- **TS:** `interface Component { render(): string }` / `class Folder implements Component { constructor(private children: Component[]) {} render() { return this.children.map(c => c.render()).join('\n') } }`
 - **When to use:** File systems, UI component trees, org hierarchies, DOM
 - **Real-world:** `io.MultiReader`, `io.MultiWriter`
 
@@ -58,6 +61,7 @@ How objects compose into larger structures while keeping flexibility. Key distin
 - **When to use:** Thousands of similar objects with shared properties
 - **Real-world:** Game tiles, character glyphs, cached DB connections, string interning
 - Go: `type FlyweightFactory struct { cache map[string]*Flyweight }` / `func (f *FlyweightFactory) Get(key string) *Flyweight { if fw, ok := f.cache[key]; ok { return fw }; fw := &Flyweight{key}; f.cache[key] = fw; return fw }`
+- **TS:** `class FlyweightFactory { private cache = new Map<string, Flyweight>(); get(key: string) { return this.cache.get(key) ?? (this.cache.set(key, new Flyweight(key)), this.cache.get(key)!) } }`
 
 ## Structural Pattern Selector
 

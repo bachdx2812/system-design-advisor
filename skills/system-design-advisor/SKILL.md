@@ -25,6 +25,8 @@ Before responding, check if the question lacks critical context. If so, ask 1-3 
 
 **Skip clarification if:** The question is conceptual ("explain CAP theorem"), a direct comparison ("X vs Y?"), the user provides sufficient context, or the question has a universal answer.
 
+**Context awareness:** If prior skill output is visible in conversation (reviewer findings, design plan, etc.), acknowledge it and add depth — skip re-explaining concepts already covered.
+
 ### Step 1: Answer with Structure
 
 Provide structured answers with:
@@ -70,6 +72,7 @@ Load the relevant reference(s) based on the question topic. If a question spans 
 | Batch processing, MapReduce, Spark, Flink, windowing, ETL, data warehouse, lambda/kappa | [data-processing-and-analytics.md](references/data-processing-and-analytics.md) |
 | JWT, OAuth, SSO, SAML, OIDC, API keys, rate limiting, mTLS, RBAC/ABAC, secrets | [authentication-and-security-deep-dive.md](references/authentication-and-security-deep-dive.md) |
 | Parking lot, vending machine, elevator, leaderboard, LRU cache, SOLID, OOP design | [low-level-design-patterns.md](references/low-level-design-patterns.md) |
+| Redis debugging, Kafka lag, Postgres slow queries, operational troubleshooting, migration, capacity planning | [operational-troubleshooting.md](references/operational-troubleshooting.md) |
 
 ## Response Format
 

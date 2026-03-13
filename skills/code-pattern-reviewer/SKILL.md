@@ -10,6 +10,8 @@ allowed-tools: Read, Grep, Glob, Bash
 
 Review project code for design pattern usage, anti-patterns, and improvement opportunities.
 
+**Context awareness:** If prior skill output is visible in conversation (design plan, advisor recommendations), reference it when presenting findings — connect your review to prior advice.
+
 ## Auto-Scan Process
 
 1. **Discover project structure** — scan for source files, identify language and framework

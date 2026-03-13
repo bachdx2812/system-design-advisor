@@ -22,6 +22,8 @@ If context is missing, ask 1-3 questions using `AskUserQuestion` tool:
 
 **Skip if:** Question is conceptual ("explain Observer pattern"), a direct comparison ("X vs Y?"), or context is sufficient.
 
+**Context awareness:** If prior skill output is visible in conversation (reviewer findings, design plan, etc.), acknowledge it and add depth — skip re-explaining concepts already covered.
+
 ## Step 1: Answer with Structure
 
 1. **Pattern name + intent** (one sentence)

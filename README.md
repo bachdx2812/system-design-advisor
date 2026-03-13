@@ -2,7 +2,7 @@
 
 AI coding assistant skills for system design — powered by knowledge from [The Engineer's Handbook](https://bachdx-learning-hub.vercel.app/).
 
-> 25 chapters of system design knowledge distilled into **16 reference files** covering 100+ topics — **tested across 3 rounds against 100 real interview problems** (4.90/5 beginner, 4.25/5 intermediate accuracy). Plus 6 design pattern reference files covering GoF, modern, and distributed patterns. All skills generate **Mermaid diagrams** for architecture visualization.
+> 25 chapters of system design knowledge distilled into **17 reference files** covering 100+ topics — **tested across 3 rounds against 100 real interview problems** (4.90/5 beginner, 4.25/5 intermediate accuracy). Plus 6 design pattern reference files covering GoF, modern, and distributed patterns. All skills generate **Mermaid diagrams** for architecture visualization.
 
 ## What's Included
 
@@ -65,6 +65,7 @@ Distilled from 25 chapters across 5 parts:
 - **Real-Time & Streaming** — WebRTC, SFU/MCU, Flink, time-series DBs, stream processing
 - **Storage & Infrastructure** — Object storage, HDFS, file sync, config management, LSM-tree, OLAP, ELK
 - **Specialized Systems** — Unique IDs, distributed locks, payments, stock exchange, game networking, spatial indexing
+- **Operational Troubleshooting** — Redis debugging (SLOWLOG, memory, stampede), Kafka (consumer lag, rebalancing), Postgres (pg_stat_statements, locks, vacuum), migration strategies (Strangler Fig, dual-write, canary)
 
 ### Design Pattern References
 
@@ -168,12 +169,14 @@ Skills tested against **100 system design interview problems** across 3 rounds o
 
 ### Improvement Across 3 Rounds
 
-| Metric | R1 (8 refs) | R2 (12 refs) | R3 (16 refs) |
-|--------|------------|-------------|-------------|
-| Avg Accuracy | 3.08/5 | 4.18/5 | **4.41/5** |
-| Full Coverage | 31% | 61% | **80%** |
-| Zero-Coverage | 25% | 5% | **2%** |
-| Reference Files | 8 | 12 | **16** |
+| Metric | R1 (8 refs) | R2 (12 refs) | R3 (16 refs) | R4 (23 refs) |
+|--------|------------|-------------|-------------|-------------|
+| Avg Accuracy | 3.08/5 | 4.18/5 | 4.41/5 | **4.88/5** |
+| Full Coverage | 31% | 61% | 80% | **95%** |
+| Zero-Coverage | 25% | 5% | 2% | **0%** |
+| Reference Files | 8 | 12 | 16 | **23** |
+
+**R4 improvements:** TypeScript code examples alongside Go, operational troubleshooting reference (Redis/Kafka/Postgres), context-aware workflow to reduce redundancy when chaining skills.
 
 Full test reports: [View on the handbook site](https://bachdx-learning-hub.vercel.app/skills#quality-validation)
 

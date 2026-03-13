@@ -23,6 +23,8 @@ Before auto-scanning, ask the user 2-4 questions using `AskUserQuestion` tool to
 
 **Skip if:** User says "just scan it" or provides context in the prompt.
 
+**Context awareness:** If prior skill output is visible in conversation (design plan, advisor recommendations), reference it when presenting findings — connect your review to prior advice.
+
 ## Auto-Scan Process
 
 1. **Discover project type** — read package.json, docker-compose.yml, Dockerfile, go.mod, requirements.txt, Makefile, or similar config files

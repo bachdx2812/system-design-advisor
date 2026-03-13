@@ -21,6 +21,8 @@ Use `AskUserQuestion` tool to ask 2-4 questions before generating a plan:
 | "Any constraints? (existing interfaces, performance, team familiarity)" | Avoids incompatible recommendations |
 | "Is this greenfield or refactoring existing code?" | Determines migration complexity |
 
+**Context awareness:** If prior skill output is visible in conversation (advisor explanation, reviewer findings), reference it and jump straight to your unique value — skip re-explaining the problem or pattern theory.
+
 ## Implementation Framework
 
 ### Phase 1: Problem Analysis

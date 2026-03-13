@@ -8,6 +8,7 @@ Control object creation — hide complexity, enforce constraints, improve flexib
 - **Problem:** Adding new types requires modifying dispatch code (switch/if chains)
 - **Solution:** Interface + concrete factories per type
 - **Go idiom:** `func NewX(type string) Interface` or `sql.Open("postgres", dsn)`
+- **TS:** `interface PaymentFactory { create(type: string): Payment }` / `class StripeFactory implements PaymentFactory { create() { return new StripePayment() } }`
 - **When to use:** Multiple variants, anticipate new types
 - **When NOT:** 1-2 types that won't change, trivial construction
 - **Related:** Abstract Factory (families), Builder (complex construction)
@@ -17,6 +18,7 @@ Control object creation — hide complexity, enforce constraints, improve flexib
 - **Problem:** Need consistent families (e.g., light/dark UI themes with matching buttons, inputs, dialogs)
 - **Solution:** Factory interface producing entire families
 - **Go idiom:** Composition + functional options (no class hierarchies)
+- **TS:** `interface UIFactory { createButton(): Button; createInput(): Input }` / `class DarkFactory implements UIFactory { createButton() { return new DarkButton() } createInput() { return new DarkInput() } }`
 - **When to use:** Product families must stay consistent, swap families at runtime
 - **When NOT:** Single concrete type, composition works fine
 
@@ -30,6 +32,7 @@ Control object creation — hide complexity, enforce constraints, improve flexib
   type Option func(*Server)
   func WithTimeout(d time.Duration) Option { return func(s *Server) { s.timeout = d } }
   ```
+- **TS:** `class QueryBuilder { select(cols: string[]) { return this } where(cond: string) { return this } build(): Query { return new Query(this) } }`
 - **When to use:** 3+ optional params, complex initialization, different representations
 - **When NOT:** Simple structs with few fields — direct initialization is cleaner
 
@@ -43,6 +46,7 @@ Control object creation — hide complexity, enforce constraints, improve flexib
   var once sync.Once
   func GetDB() *DB { once.Do(func() { instance = &DB{} }); return instance }
   ```
+- **TS:** `class DB { private static instance: DB; static getInstance() { return (DB.instance ??= new DB()) } private constructor() {} }`
 - **When to use:** Connection pools, loggers, truly global config
 - **When NOT:** Most code — global mutable state is hard to test. **Use DI instead**
 
