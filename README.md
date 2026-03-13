@@ -2,7 +2,7 @@
 
 AI coding assistant skills for system design — powered by knowledge from [The Engineer's Handbook](https://bachdx-learning-hub.vercel.app/).
 
-> 25 chapters of system design knowledge distilled into AI skills for Claude Code and Cursor.
+> 25 chapters of system design knowledge distilled into 12 reference files covering 100+ system design topics — tested against 100 real interview problems.
 
 ## What's Included
 
@@ -19,8 +19,12 @@ Distilled from 25 chapters across 5 parts:
 - **Fundamentals** — Scalability, CAP/PACELC, estimation, latency analysis
 - **Building Blocks** — DNS, load balancing, caching, CDN, SQL/NoSQL, message queues, protocols
 - **Architecture** — Microservices, event-driven, replication, security, monitoring
-- **Case Studies** — URL shortener, social feed, chat, video streaming, ride-sharing
+- **Case Studies** — URL shortener, social feed, chat, video streaming, ride-sharing, web crawler, file sync, notifications
 - **Modern** — Cloud-native, ML systems, interview framework
+- **Search & Indexing** — Inverted index, trie, BM25, Elasticsearch, autocomplete, web crawler
+- **Real-Time & Streaming** — WebRTC, SFU/MCU, Flink, time-series DBs, stream processing
+- **Storage & Infrastructure** — Object storage, HDFS, file sync, config management, LSM-tree, OLAP, ELK
+- **Specialized Systems** — Unique IDs, distributed locks, payments, stock exchange, game networking, spatial indexing
 
 ## Installation
 
@@ -81,6 +85,26 @@ Rules auto-activate based on your prompts — no manual invocation needed.
 > /architecture-reviewer
 ```
 (Auto-scans your project and produces a findings table)
+
+## Quality Validation
+
+Skills were tested against **100 well-known system design interview problems** across 4 difficulty levels:
+
+| Batch | Problems | Avg Accuracy | Avg Actionability | Coverage |
+|-------|----------|-------------|-------------------|----------|
+| Beginner (1-20) | Rate Limiter, URL Shortener, Web Crawler, Chat... | 4.15/5 | 4.10/5 | 85% |
+| Intermediate A (21-40) | News Feed, Ride Sharing, Payment, Kafka... | 3.55/5 | 3.45/5 | 85% |
+| Intermediate B (41-60) | Search Engine, Spotify, Zoom, YouTube... | 2.95/5 | 2.80/5 | 85% |
+| Advanced (61-80) | Google Maps, HDFS, Blockchain, ML Pipeline... | 3.05/5 | 2.95/5 | 80% |
+| Expert (81-100) | YouTube Rec Engine, Google Search, Twitter Scale... | TBD | TBD | TBD |
+
+**Post-test improvements applied:**
+- Added 4 new reference files (search, real-time, storage, specialized systems)
+- Expanded case studies (web crawler, file sync, notifications)
+- Added locking strategies, OLAP/OLTP, 2PC, API gateway patterns
+- Updated topic routing to cover 12 reference files
+
+Full test reports: [View on the handbook site](https://bachdx-learning-hub.vercel.app/skills#quality-validation)
 
 ## Source
 

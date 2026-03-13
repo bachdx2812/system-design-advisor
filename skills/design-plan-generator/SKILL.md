@@ -38,6 +38,12 @@ Use the read:write ratio to select scaling strategy (read-heavy → replicas+cac
 
 References: [case-studies.md](references/case-studies.md), [architecture-patterns.md](references/architecture-patterns.md)
 
+Load additional references based on domain:
+- Search/autocomplete → [search-and-indexing.md](references/search-and-indexing.md)
+- Real-time/video/streaming → [real-time-and-streaming.md](references/real-time-and-streaming.md)
+- Storage/file sync/OLAP → [storage-and-infrastructure.md](references/storage-and-infrastructure.md)
+- Payments/IDs/locks/gaming/geo → [specialized-systems.md](references/specialized-systems.md)
+
 - Define API endpoints (REST/gRPC)
 - Design data model (entities, relationships, access patterns)
 - Draw component diagram: clients → LB → app servers → cache → DB → queue

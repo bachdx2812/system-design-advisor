@@ -28,9 +28,17 @@ Answer system design questions with structured responses: recommendation, trade-
 | Read-heavy + hot data | Cache (Redis) |
 | Write bottleneck | Message queue (Kafka/SQS) |
 | Multi-region + static | CDN |
-| Full-text search | Elasticsearch |
-| Distributed transactions | Saga pattern |
+| Full-text search | Elasticsearch (inverted index, BM25) |
+| Distributed transactions | Saga (eventual) or 2PC (strong, blocking) |
 | Flaky downstream | Circuit breaker + backoff |
+| Unique IDs | Snowflake (sortable, 64-bit) or UUID v4 (128-bit, no coordination) |
+| Distributed locks | Redis SETNX+TTL (fast) or ZooKeeper (strong) |
+| Real-time video | WebRTC + SFU (5-50 users) or MCU (large rooms) |
+| Stream processing | Kafka Streams (light) or Flink (complex CEP) |
+| Spatial queries | Geohash (proximity) or R-tree (polygons, PostGIS) |
+| Time-series data | TimescaleDB (SQL) or InfluxDB (custom) |
+| File sync | Block-level chunking + SHA-256 dedup + delta sync |
+| Config management | etcd/Consul KV with watch-based propagation |
 
 ## SQL vs NoSQL
 - **SQL:** Complex queries, relationships, ACID transactions, strong consistency

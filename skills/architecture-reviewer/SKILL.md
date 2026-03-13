@@ -19,7 +19,7 @@ Review the current project's architecture against system design principles.
 
 ## Review Checklist
 
-Evaluate against these dimensions. Load references as needed.
+Evaluate against these dimensions. Load references as needed from the `references/` directory (12 files covering fundamentals, DNS, caching, databases, queues, architecture patterns, case studies, modern systems, search, real-time, storage, and specialized systems).
 
 ### Scalability
 Reference: [fundamentals-and-estimation.md](references/fundamentals-and-estimation.md)

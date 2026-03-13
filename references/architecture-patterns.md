@@ -62,6 +62,20 @@
 
 **Alert on p95/p99 latency, not averages.** Averages hide tail latency.
 
+## Two-Phase Commit (2PC)
+- **Phase 1 (Prepare):** Coordinator asks all participants "can you commit?"
+- **Phase 2 (Commit):** If all vote yes → commit; any no → abort
+- **Problem:** Blocking protocol — if coordinator crashes after prepare, participants wait
+- **vs Saga:** 2PC = strong consistency + blocking; Saga = eventual consistency + compensating actions
+- Use Saga for microservices; 2PC only within single DB cluster or when strong consistency is non-negotiable
+
+## API Gateway
+- Single entry point: routing, auth, rate limiting, request transformation, logging
+- **North-south traffic** (external→internal): API Gateway handles
+- **East-west traffic** (service→service): Service Mesh handles
+- Examples: Kong, AWS API Gateway, Nginx (with Lua)
+- API Gateway vs Service Mesh: gateway = edge proxy; mesh = sidecar per service
+
 ## SLI/SLO/SLA
 - SLI: measurable indicator (latency, error rate)
 - SLO: target (99.95% availability)

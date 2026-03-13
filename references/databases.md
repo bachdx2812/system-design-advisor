@@ -57,5 +57,16 @@
 - **Paxos:** Complex but proven (Google Spanner)
 - **ZAB:** Zookeeper's consensus
 
+## Locking Strategies
+- **Optimistic:** Read version → UPDATE WHERE version=X → retry on conflict (low contention)
+- **Pessimistic:** SELECT FOR UPDATE → hold lock during transaction (high contention)
+- **Distributed lock:** Redis SETNX+TTL (fast, weak) or ZooKeeper/etcd (strong, slower)
+- Use optimistic for reads >> writes; pessimistic for booking/inventory systems
+
+## OLAP vs OLTP
+- **OLTP:** Row-oriented, point queries, ms latency (PostgreSQL, MySQL)
+- **OLAP:** Column-oriented, aggregation scans, seconds latency (BigQuery, ClickHouse, Redshift)
+- **Star schema:** Fact table (metrics) + dimension tables (attributes) for analytics
+
 ## Default Choice
 Start with SQL (PostgreSQL). Move to NoSQL when: schema changes frequently, horizontal scale needed, access pattern is simple K/V or append-only, or data naturally fits document/graph model.
