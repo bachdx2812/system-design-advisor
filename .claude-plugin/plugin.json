@@ -8,36 +8,5 @@
   "homepage": "https://bachdx-learning-hub.vercel.app/skills",
   "repository": "https://github.com/bachdx2812/system-design-advisor",
   "license": "MIT",
-  "skills": [
-    {
-      "name": "system-design-advisor",
-      "description": "Answer system design questions, explain tradeoffs, and provide architectural guidance on scalability, databases, caching, load balancing, CAP theorem, microservices, and distributed systems.",
-      "path": "skills/system-design-advisor/SKILL.md"
-    },
-    {
-      "name": "design-plan-generator",
-      "description": "Generate step-by-step system design plans using a structured 4-step framework for any system design problem.",
-      "path": "skills/design-plan-generator/SKILL.md"
-    },
-    {
-      "name": "architecture-reviewer",
-      "description": "Auto-scan and review project architecture against system design best practices, identifying bottlenecks and scalability issues.",
-      "path": "skills/architecture-reviewer/SKILL.md"
-    },
-    {
-      "name": "design-patterns-advisor",
-      "description": "Answer questions about GoF design patterns (creational, structural, behavioral), modern patterns, distributed patterns, and anti-patterns. Generates Mermaid diagrams showing pattern structure.",
-      "path": "skills/design-patterns-advisor/SKILL.md"
-    },
-    {
-      "name": "pattern-implementation-guide",
-      "description": "Generate step-by-step implementation plans for applying design patterns to real problems, with language-specific code examples and class diagrams.",
-      "path": "skills/pattern-implementation-guide/SKILL.md"
-    },
-    {
-      "name": "code-pattern-reviewer",
-      "description": "Auto-scan project code for design pattern usage, anti-pattern violations, and improvement opportunities. Produces a findings table with severity ratings and pattern suggestions.",
-      "path": "skills/code-pattern-reviewer/SKILL.md"
-    }
-  ]
+  "skills": "./skills/"
 }

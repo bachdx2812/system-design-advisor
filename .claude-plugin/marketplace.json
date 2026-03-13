@@ -1,0 +1,24 @@
+{
+  "name": "system-design-advisor",
+  "owner": {
+    "name": "Bach Duong"
+  },
+  "metadata": {
+    "description": "AI skills for system design advising — 6 skills powered by 23 reference files from The Engineer's Handbook.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "system-design-advisor",
+      "source": "./",
+      "description": "6 AI skills for system design and design patterns — answer questions, generate plans, review architectures, and advise on patterns.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Bach Duong"
+      },
+      "homepage": "https://bachdx-learning-hub.vercel.app/skills",
+      "license": "MIT",
+      "keywords": ["system-design", "architecture", "design-patterns", "interview-prep"]
+    }
+  ]
+}
