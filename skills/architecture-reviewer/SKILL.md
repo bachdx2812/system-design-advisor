@@ -10,6 +10,19 @@ allowed-tools: Read, Grep, Glob, Bash
 
 Review the current project's architecture against system design principles.
 
+## Step 0: Gather Context
+
+Before auto-scanning, ask the user 2-4 questions using `AskUserQuestion` tool to focus the review:
+
+| Question | Why |
+|----------|-----|
+| "What's your current/expected scale? (DAU, QPS, data size)" | Calibrates scalability recommendations |
+| "What are your top concerns? (performance, reliability, security, cost)" | Prioritizes findings |
+| "Any planned changes? (scale increase, new features, migration)" | Focuses forward-looking advice |
+| "What's your SLA target? (availability %, latency p99)" | Sets the benchmark for evaluation |
+
+**Skip if:** User says "just scan it" or provides context in the prompt.
+
 ## Auto-Scan Process
 
 1. **Discover project type** — read package.json, docker-compose.yml, Dockerfile, go.mod, requirements.txt, Makefile, or similar config files

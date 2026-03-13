@@ -16,11 +16,23 @@ Execute these 4 steps in order. Load references as needed.
 
 ### Step 1: Requirements (clarify scope)
 
+**ALWAYS ask clarifying questions first** using `AskUserQuestion` tool before generating a plan. Ask 2-5 questions based on what's missing:
+
+| Category | Questions |
+|----------|-----------|
+| **Scale** | "Target DAU/MAU?", "Expected QPS (read vs write)?", "Data volume per day?" |
+| **Features** | "What are the 3-5 core features? (I'll suggest if unsure)", "What's explicitly out of scope?" |
+| **Constraints** | "Latency SLA? (e.g., p99 < 200ms)", "Consistency model? (strong vs eventual)", "Availability target? (99.9% vs 99.99%)" |
+| **Context** | "Is this greenfield or extending existing system?", "Any tech stack preferences/constraints?", "Cloud provider preference?" |
+| **Access pattern** | "Read-heavy or write-heavy?", "Bursty or steady traffic?", "Global or single-region?" |
+
+**If user provides `$ARGUMENTS` with enough detail** (e.g., "Design a URL shortener for 100M DAU with <100ms p99"), reduce to 1-2 confirmation questions.
+
+After collecting answers, proceed with:
+
 **Functional:** What must the system do? List 3-5 core features.
 **Non-functional:** DAU target, latency SLA (p50/p99), availability (nines), consistency model.
-**Out of scope:** What are we NOT building?
-
-If `$ARGUMENTS` is vague, ask clarifying questions before proceeding.
+**Out of scope:** What are we NOT building.
 
 ### Step 2: Estimation
 

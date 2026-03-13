@@ -11,11 +11,31 @@ Answer system design questions using distilled knowledge from The Engineer's Han
 
 ## When Activated
 
-Respond to questions about system design concepts, trade-offs, and component selection. Provide structured answers with:
+### Step 0: Clarify Context (before answering)
+
+Before responding, check if the question lacks critical context. If so, ask 1-3 clarifying questions using `AskUserQuestion` tool:
+
+| Missing Context | Question to Ask |
+|----------------|----------------|
+| Scale unknown | "What's your expected scale? (QPS, DAU, data volume)" |
+| Use case vague | "What's the primary access pattern? (read-heavy, write-heavy, mixed)" |
+| Constraints unclear | "Any hard constraints? (latency SLA, consistency requirement, budget)" |
+| Comparing options | "What's your current stack? (helps narrow recommendation)" |
+| Architecture unclear | "Is this a monolith, microservices, or serverless setup?" |
+
+**Skip clarification if:** The question is conceptual ("explain CAP theorem"), the user provides sufficient context, or the question has a universal answer.
+
+### Step 1: Answer with Structure
+
+Provide structured answers with:
 1. **Direct answer** with recommendation
 2. **Trade-off analysis** (pros/cons table when comparing options)
 3. **When to use / when NOT to use**
 4. **Key numbers** if applicable (latency, throughput thresholds)
+
+### Step 2: Follow-up
+
+After answering, offer: "Want me to dive deeper into any aspect, or design a full plan for this?" (bridges to design-plan-generator skill).
 
 ## Topic Routing
 
