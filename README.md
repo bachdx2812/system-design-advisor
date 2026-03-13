@@ -1,0 +1,91 @@
+# System Design Advisor
+
+AI coding assistant skills for system design — powered by knowledge from [The Engineer's Handbook](https://bachdx-learning-hub.vercel.app/).
+
+> 25 chapters of system design knowledge distilled into AI skills for Claude Code and Cursor.
+
+## What's Included
+
+| Skill | Description | Trigger |
+|-------|------------|---------|
+| **system-design-advisor** | Answer system design questions, explain tradeoffs, component selection | "Should I use SQL or NoSQL?", "Explain CAP theorem" |
+| **design-plan-generator** | Generate step-by-step system design plans using 4-step framework | "Design a URL shortener", "Architect a chat system" |
+| **architecture-reviewer** | Auto-scan and review project architecture against best practices | "Review my architecture", "Is this scalable?" |
+
+## Knowledge Base
+
+Distilled from 25 chapters across 5 parts:
+
+- **Fundamentals** — Scalability, CAP/PACELC, estimation, latency analysis
+- **Building Blocks** — DNS, load balancing, caching, CDN, SQL/NoSQL, message queues, protocols
+- **Architecture** — Microservices, event-driven, replication, security, monitoring
+- **Case Studies** — URL shortener, social feed, chat, video streaming, ride-sharing
+- **Modern** — Cloud-native, ML systems, interview framework
+
+## Installation
+
+### Claude Code
+
+**Option 1: Copy skills (recommended)**
+
+```bash
+# Clone the repo
+git clone https://github.com/bachdx2812/system-design-advisor.git
+
+# Copy skills + references to your Claude Code skills directory
+cp -r system-design-advisor/skills/* ~/.claude/skills/
+cp -r system-design-advisor/references ~/.claude/skills/system-design-advisor/
+cp -r system-design-advisor/references ~/.claude/skills/design-plan-generator/
+cp -r system-design-advisor/references ~/.claude/skills/architecture-reviewer/
+```
+
+**Option 2: Project-level install**
+
+```bash
+# In your project directory
+cp -r system-design-advisor/skills/* .claude/skills/
+cp -r system-design-advisor/references .claude/skills/system-design-advisor/
+cp -r system-design-advisor/references .claude/skills/design-plan-generator/
+cp -r system-design-advisor/references .claude/skills/architecture-reviewer/
+```
+
+After installing, the skills appear as `/system-design-advisor`, `/design-plan-generator`, and `/architecture-reviewer` in Claude Code.
+
+### Cursor
+
+```bash
+# Clone the repo
+git clone https://github.com/bachdx2812/system-design-advisor.git
+
+# Copy rules to your project
+cp -r system-design-advisor/cursor/rules/* .cursor/rules/
+```
+
+Rules auto-activate based on your prompts — no manual invocation needed.
+
+## Usage Examples
+
+### System Design Advisor
+```
+> /system-design-advisor
+> Should I use Redis or Memcached for my caching layer?
+```
+
+### Design Plan Generator
+```
+> /design-plan-generator chat messaging system
+```
+
+### Architecture Reviewer
+```
+> /architecture-reviewer
+```
+(Auto-scans your project and produces a findings table)
+
+## Source
+
+All knowledge is from [The Engineer's Handbook](https://bachdx-learning-hub.vercel.app/) — a free, open-source system design reference with 25 chapters, 200+ diagrams, and real-world case studies.
+
+## License
+
+MIT

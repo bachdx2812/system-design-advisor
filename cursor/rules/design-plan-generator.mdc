@@ -1,0 +1,53 @@
+---
+description: Generate step-by-step system design plans. Use when user says "design a...", "architect a...", "plan a system for..." or needs complete system design from scratch.
+alwaysApply: false
+---
+
+# Design Plan Generator
+
+Generate system design plans using the 4-step framework (5-10-20-10 time split).
+
+## Step 1: Requirements (5 min)
+- **Functional:** 3-5 core features the system must support
+- **Non-functional:** DAU, RPS targets, latency SLA (p50/p99), availability, consistency model
+- **Out of scope:** What we're NOT building
+- If vague, ask clarifying questions first
+
+## Step 2: Estimation (10 min)
+```
+QPS = DAU x actions/user/day / 86,400 | Peak = Avg x 2-3
+Storage = writes/day x record_size x retention x 3 (replication)
+Bandwidth = QPS x avg_payload
+Cache = hot_data_% x working_set
+```
+State assumptions explicitly. Round aggressively.
+
+## Step 3: High-Level Design (20 min)
+1. Define API endpoints and contracts
+2. Design data model (entities, relationships, access patterns)
+3. Draw component diagram: clients → LB → app → cache → DB → queue
+4. Walk through critical user journey end-to-end
+5. Justify each component added
+
+## Step 4: Deep Dive (10 min)
+- Top 2-3 bottlenecks and scaling strategies
+- Failure scenarios and mitigation
+- Key trade-off decisions with reasoning
+
+## Reference Architectures
+
+| System | Key Components | Core Pattern |
+|--------|---------------|-------------|
+| URL Shortener | SQL + Redis + KGS | Cache-aside, Base62 |
+| Social Feed | Posts DB + Feed Redis + Kafka | Hybrid fan-out |
+| Chat | Cassandra + Redis + WebSocket | Persistent connections |
+| Video Platform | S3 + Transcode queue + CDN | HLS/DASH adaptive bitrate |
+| Ride-Sharing | Redis GEO + Trip DB + Matcher | Geohashing, real-time match |
+
+## 11 Critical Patterns
+Read replica | Sharding | Cache-aside | Write-through | Fan-out on write | Fan-out on read | CQRS | Event sourcing | Saga | Circuit breaker | Consistent hashing
+
+## Output
+Present plan inline. Ask if user wants to save to file.
+
+Source: The Engineer's Handbook — https://bachdx-learning-hub.vercel.app/

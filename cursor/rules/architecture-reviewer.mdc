@@ -1,0 +1,64 @@
+---
+description: Review existing code and architecture against system design best practices. Use when user wants architecture review, scalability assessment, asks "review my architecture", "is this scalable?", "what are the bottlenecks?".
+alwaysApply: false
+---
+
+# Architecture Reviewer
+
+Auto-scan the project and review architecture against system design principles.
+
+## Scan Process
+1. Read config files (package.json, docker-compose, Dockerfile, go.mod, etc.)
+2. Identify API routes, DB configs, cache configs, queue configs
+3. Map discovered components and dependencies
+
+## Review Checklist
+
+### Scalability
+- [ ] Stateless app servers (no local session storage)?
+- [ ] DB scaling strategy (replicas for reads, sharding for writes)?
+- [ ] Cache layer for read-heavy paths (90%+ hit rate = 10x DB capacity)?
+- [ ] Async processing for write-heavy/long tasks?
+- [ ] CDN for static assets?
+
+### Reliability
+- [ ] No single points of failure?
+- [ ] Circuit breaker / retry + backoff for external calls?
+- [ ] Graceful degradation under load?
+- [ ] Health checks (readiness + liveness)?
+- [ ] DR strategy (RPO/RTO defined)?
+
+### Data Architecture
+- [ ] DB choice matches access patterns (SQL for joins, NoSQL for K/V)?
+- [ ] Indexes cover hot queries (B-tree for range, hash for equality)?
+- [ ] Replication/backup strategy?
+- [ ] No N+1 query patterns?
+
+### Communication
+- [ ] Right protocol per use case (REST for public, gRPC for internal, WS for real-time)?
+- [ ] Async where sync unnecessary?
+- [ ] Idempotency for non-safe operations (POST with idempotency key)?
+
+### Security
+- [ ] AuthN/AuthZ implemented?
+- [ ] Rate limiting on public endpoints?
+- [ ] Input validation at boundaries?
+- [ ] Secrets in env vars, not code?
+- [ ] TLS for all external communication?
+
+### Observability
+- [ ] Structured logging?
+- [ ] Metrics (latency p95/p99, error rate, throughput)?
+- [ ] Distributed tracing for multi-service?
+- [ ] Alerting on SLO violations?
+
+## Output Format
+
+| # | Category | Severity | Finding | Recommendation |
+|---|----------|----------|---------|----------------|
+
+**Severity levels:** Critical (fix now) | High (fix soon) | Medium (plan fix) | Low (nice to have)
+
+End with: Strengths, Top 3 Improvements, Architecture Score (X/10).
+
+Source: The Engineer's Handbook — https://bachdx-learning-hub.vercel.app/

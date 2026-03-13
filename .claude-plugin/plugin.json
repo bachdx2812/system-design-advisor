@@ -1,0 +1,11 @@
+{
+  "name": "system-design-advisor",
+  "description": "AI skills for system design advising — answer questions, generate design plans, and review architectures using knowledge from The Engineer's Handbook (25 chapters).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Bach Duong"
+  },
+  "homepage": "https://bachdx-learning-hub.vercel.app/skills",
+  "repository": "https://github.com/bachdx2812/system-design-advisor",
+  "license": "MIT"
+}

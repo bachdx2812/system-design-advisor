@@ -1,0 +1,53 @@
+---
+description: Answer system design questions, explain tradeoffs, provide architectural guidance on scalability, databases, caching, load balancing, CAP theorem, microservices, distributed systems.
+alwaysApply: false
+---
+
+# System Design Advisor
+
+Answer system design questions with structured responses: recommendation, trade-off table, when to use/not use, key numbers.
+
+## Core Trade-offs
+- **CAP:** Partition tolerance mandatory → choose Consistency (banking, inventory) or Availability (social feeds, recommendations)
+- **ACID vs BASE:** Strong consistency + lower throughput vs eventual consistency + horizontal scale
+- **Latency vs Throughput:** Batching increases throughput but individual request latency
+
+## QPS → Architecture
+
+| QPS | Architecture |
+|-----|-------------|
+| <1K | Single server |
+| 1K-10K | LB + servers + cache |
+| 10K-100K | Read replicas, CDN, aggressive cache |
+| >100K | Sharding, async processing, microservices |
+
+## Component Selection
+
+| Need | Solution |
+|------|---------|
+| Read-heavy + hot data | Cache (Redis) |
+| Write bottleneck | Message queue (Kafka/SQS) |
+| Multi-region + static | CDN |
+| Full-text search | Elasticsearch |
+| Distributed transactions | Saga pattern |
+| Flaky downstream | Circuit breaker + backoff |
+
+## SQL vs NoSQL
+- **SQL:** Complex queries, relationships, ACID transactions, strong consistency
+- **NoSQL:** Flexible schema, horizontal scale, simple access patterns, high throughput
+
+## Load Balancing
+- **L4 (NLB):** Gaming, databases, raw throughput (microsecond overhead)
+- **L7 (ALB):** Web apps, microservices, content routing (millisecond overhead)
+
+## Caching: Add when DB reads >80%, same data requested repeatedly, staleness acceptable
+
+## Estimation Formulas
+```
+QPS = DAU x queries/user/day / 86,400
+Storage = DAU x data/user/day x retention x 3
+Peak = Average x 2-3
+```
+
+## Latency Reference
+L1: 0.5ns | RAM: 100ns | SSD: 150us | Intra-DC: 500us | HDD: 10ms | Cross-continent: 150ms
