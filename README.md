@@ -83,7 +83,9 @@ Distilled from 25 chapters across 5 parts:
 ### Claude Code (plugin — recommended)
 
 ```bash
-claude plugin add bachdx2812/system-design-advisor
+# Add marketplace & install
+claude plugin marketplace add bachdx2812/system-design-advisor
+claude plugin install system-design-advisor
 ```
 
 After installing, invoke with `/system-design-advisor:system-design-advisor`, `/system-design-advisor:design-plan-generator`, etc.
