@@ -13,42 +13,43 @@ Review the current project's architecture against system design principles.
 ## Auto-Scan Process
 
 1. **Discover project type** — read package.json, docker-compose.yml, Dockerfile, go.mod, requirements.txt, Makefile, or similar config files
-2. **Identify architecture** — scan for API routes, database configs, cache configs, queue configs, service definitions
-3. **Map components** — list discovered services, databases, caches, queues, external dependencies
+2. **Classify project** — backend API, frontend SPA, static site, full-stack, microservices, CLI tool. Adapt checklist to project type (skip irrelevant dimensions, mark as N/A).
+3. **Identify architecture** — scan for API routes, database configs, cache configs, queue configs, service definitions, build configs, deployment configs
+4. **Map components** — list discovered services, databases, caches, queues, external dependencies
 
 ## Review Checklist
 
 Evaluate against these dimensions. Load references as needed.
 
 ### Scalability
-Reference: [fundamentals-and-estimation.md](../../references/fundamentals-and-estimation.md)
+Reference: [fundamentals-and-estimation.md](references/fundamentals-and-estimation.md)
 - [ ] Stateless application servers?
 - [ ] Database scaling strategy (replicas, sharding)?
 - [ ] Caching layer present for read-heavy paths?
 - [ ] Async processing for write-heavy/long-running tasks?
 
 ### Reliability
-Reference: [architecture-patterns.md](../../references/architecture-patterns.md)
+Reference: [architecture-patterns.md](references/architecture-patterns.md)
 - [ ] Single points of failure identified?
 - [ ] Circuit breaker / retry with backoff for external calls?
 - [ ] Graceful degradation under load?
 - [ ] Health checks (readiness, liveness)?
 
 ### Data Architecture
-Reference: [databases.md](../../references/databases.md)
+Reference: [databases.md](references/databases.md)
 - [ ] Appropriate database choice for access patterns?
 - [ ] Indexing strategy covers hot queries?
 - [ ] Replication / backup strategy?
 - [ ] Data model matches query patterns (avoid N+1)?
 
 ### Communication
-Reference: [queues-and-protocols.md](../../references/queues-and-protocols.md)
+Reference: [queues-and-protocols.md](references/queues-and-protocols.md)
 - [ ] Appropriate protocol per use case (REST/gRPC/WebSocket)?
 - [ ] Async where synchronous is unnecessary?
 - [ ] Idempotency for non-safe operations?
 
 ### Security
-Reference: [architecture-patterns.md](../../references/architecture-patterns.md)
+Reference: [architecture-patterns.md](references/architecture-patterns.md)
 - [ ] AuthN/AuthZ implemented?
 - [ ] Rate limiting on public endpoints?
 - [ ] Input validation at boundaries?

@@ -24,17 +24,19 @@ If `$ARGUMENTS` is vague, ask clarifying questions before proceeding.
 
 ### Step 2: Estimation
 
-Reference: [fundamentals-and-estimation.md](../../references/fundamentals-and-estimation.md)
+Reference: [fundamentals-and-estimation.md](references/fundamentals-and-estimation.md)
 
 Calculate and state assumptions:
-- **Traffic:** QPS (read + write) from DAU
+- **Traffic:** QPS (read + write separately) from DAU. State the read:write ratio explicitly.
 - **Storage:** Per-record size x daily volume x retention x 3 (replication)
 - **Bandwidth:** QPS x avg payload size
 - **Cache:** Hot data % x working set size
 
+Use the read:write ratio to select scaling strategy (read-heavy → replicas+cache, write-heavy → sharding+queues).
+
 ### Step 3: High-Level Design
 
-References: [case-studies.md](../../references/case-studies.md), [architecture-patterns.md](../../references/architecture-patterns.md)
+References: [case-studies.md](references/case-studies.md), [architecture-patterns.md](references/architecture-patterns.md)
 
 - Define API endpoints (REST/gRPC)
 - Design data model (entities, relationships, access patterns)
@@ -43,7 +45,7 @@ References: [case-studies.md](../../references/case-studies.md), [architecture-p
 
 ### Step 4: Deep Dive
 
-References: [databases.md](../../references/databases.md), [caching-and-cdn.md](../../references/caching-and-cdn.md)
+References: [databases.md](references/databases.md), [caching-and-cdn.md](references/caching-and-cdn.md)
 
 - Identify top 2-3 bottlenecks
 - Propose scaling strategy for each

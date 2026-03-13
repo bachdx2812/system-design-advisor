@@ -19,18 +19,18 @@ Respond to questions about system design concepts, trade-offs, and component sel
 
 ## Topic Routing
 
-Load the relevant reference based on the question topic:
+Load the relevant reference(s) based on the question topic. If a question spans multiple topics, load all relevant references:
 
 | Topic | Reference |
 |-------|-----------|
-| Scalability, CAP, estimation, QPS | [fundamentals-and-estimation.md](../../references/fundamentals-and-estimation.md) |
-| DNS, load balancing, L4/L7 | [dns-and-load-balancing.md](../../references/dns-and-load-balancing.md) |
-| Caching, Redis, CDN | [caching-and-cdn.md](../../references/caching-and-cdn.md) |
-| SQL, NoSQL, sharding, replication | [databases.md](../../references/databases.md) |
-| Message queues, HTTP, gRPC, WebSocket | [queues-and-protocols.md](../../references/queues-and-protocols.md) |
-| Microservices, event-driven, security, monitoring | [architecture-patterns.md](../../references/architecture-patterns.md) |
-| URL shortener, chat, feed, video, ride-sharing | [case-studies.md](../../references/case-studies.md) |
-| Cloud-native, ML systems, interview prep | [modern-and-interview.md](../../references/modern-and-interview.md) |
+| Scalability, CAP, estimation, QPS | [fundamentals-and-estimation.md](references/fundamentals-and-estimation.md) |
+| DNS, load balancing, L4/L7 | [dns-and-load-balancing.md](references/dns-and-load-balancing.md) |
+| Caching, Redis, CDN | [caching-and-cdn.md](references/caching-and-cdn.md) |
+| SQL, NoSQL, sharding, replication | [databases.md](references/databases.md) |
+| Message queues, HTTP, gRPC, WebSocket | [queues-and-protocols.md](references/queues-and-protocols.md) |
+| Microservices, event-driven, security, monitoring | [architecture-patterns.md](references/architecture-patterns.md) |
+| URL shortener, chat, feed, video, ride-sharing | [case-studies.md](references/case-studies.md) |
+| Cloud-native, ML systems, interview prep | [modern-and-interview.md](references/modern-and-interview.md) |
 
 ## Response Format
 
