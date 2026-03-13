@@ -96,7 +96,7 @@ Skills were tested against **100 well-known system design interview problems** a
 | Intermediate A (21-40) | News Feed, Ride Sharing, Payment, Kafka... | 3.55/5 | 3.45/5 | 85% |
 | Intermediate B (41-60) | Search Engine, Spotify, Zoom, YouTube... | 2.95/5 | 2.80/5 | 85% |
 | Advanced (61-80) | Google Maps, HDFS, Blockchain, ML Pipeline... | 3.05/5 | 2.95/5 | 80% |
-| Expert (81-100) | YouTube Rec Engine, Google Search, Twitter Scale... | TBD | TBD | TBD |
+| Expert (81-100) | YouTube Rec Engine, Google Search, Twitter Scale... | 2.25/5 | 2.15/5 | 55% |
 
 **Post-test improvements applied:**
 - Added 4 new reference files (search, real-time, storage, specialized systems)
