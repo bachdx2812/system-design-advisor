@@ -12,6 +12,14 @@ AI coding assistant skills for system design — powered by knowledge from [The 
 | **design-plan-generator** | Generate step-by-step system design plans using 4-step framework | "Design a URL shortener", "Architect a chat system" |
 | **architecture-reviewer** | Auto-scan and review project architecture against best practices | "Review my architecture", "Is this scalable?" |
 
+### Interactive Clarifying Questions
+
+All skills ask targeted questions before responding to deliver more relevant answers:
+
+- **system-design-advisor** — Asks about your scale, access pattern, and constraints when context is missing. Skips for conceptual questions like "explain CAP theorem".
+- **design-plan-generator** — Always asks 2-5 scoping questions (target DAU, read/write ratio, consistency model, tech constraints) before generating a plan.
+- **architecture-reviewer** — Gathers context about your scale targets, top concerns, SLA, and planned changes before scanning. Say "just scan it" to skip.
+
 ## Knowledge Base
 
 Distilled from 25 chapters across 5 parts:
