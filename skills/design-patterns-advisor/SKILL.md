@@ -20,7 +20,7 @@ If context is missing, ask 1-3 questions using `AskUserQuestion` tool:
 | Scale unclear | "Is this a single service, microservices, or distributed system?" |
 | Comparing options | "Do you have existing code this pattern needs to fit into?" |
 
-**Skip if:** Question is conceptual ("explain Observer pattern") or context is sufficient.
+**Skip if:** Question is conceptual ("explain Observer pattern"), a direct comparison ("X vs Y?"), or context is sufficient.
 
 ## Step 1: Answer with Structure
 

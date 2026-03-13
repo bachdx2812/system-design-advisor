@@ -5,17 +5,12 @@ How objects compose into larger structures while keeping flexibility. Key distin
 
 ## Adapter
 - **Intent:** Translate incompatible interface to expected one
-- **Problem:** Third-party SDK has different interface than your code expects
-- **Solution:** Wrapper struct implementing your interface, delegating to vendor
 - **Go idiom:** Struct wrapping foreign type, implementing local interface
 - **When to use:** Integrate third-party libraries, legacy system wrapping
-- **When NOT:** Interfaces already compatible — just use directly
 - **Real-world:** Payment gateway adapters (Stripe/PayPal → common PaymentProcessor)
 
 ## Decorator
 - **Intent:** Add behavior to objects dynamically without changing structure
-- **Problem:** Cross-cutting concerns (logging, auth, caching) duplicated everywhere
-- **Solution:** Wrapper implementing same interface with additional behavior
 - **Go idiom:** `func(Handler) Handler` middleware chains (most idiomatic):
   ```go
   func WithLogging(next http.Handler) http.Handler {
@@ -26,47 +21,43 @@ How objects compose into larger structures while keeping flexibility. Key distin
   }
   ```
 - **When to use:** Cross-cutting concerns, optional features, stackable behaviors
-- **When NOT:** Core responsibilities — use composition instead
 - **Real-world:** HTTP middleware (auth → logging → CORS → handler)
 
 ## Facade
 - **Intent:** Provide simplified interface to complex subsystem
-- **Problem:** Client must coordinate multiple interdependent components
-- **Solution:** Single struct orchestrating subsystem with simple methods
 - **When to use:** Complex subsystems, unified API for library/package
-- **When NOT:** Hiding complexity that callers need to understand
 - **Real-world:** `database/sql` hides connection pooling, driver management
 
 ## Proxy
 - **Intent:** Control/augment access to object without changing it
-- **Three types:**
-  - **Protection:** Access control (auth check before forwarding)
-  - **Virtual:** Lazy loading expensive resources (connect to DB on first query)
-  - **Logging:** Audit trail (record all method calls)
+- **Three types:** Protection (auth check) | Virtual (lazy load) | Logging (audit trail)
 - **When to use:** Expensive resources, access control, instrumentation
-- **When NOT:** Adding new functionality (use Decorator instead)
 - **Real-world:** `httputil.ReverseProxy`, mock objects in tests
 
 ## Composite
 - **Intent:** Treat individual objects and compositions uniformly (tree structures)
-- **Problem:** Need recursive structures where leaf and container share interface
-- **Solution:** Interface implemented by both Leaf and Composite (has children)
+- **Solution:** Interface implemented by both Leaf and Composite:
+  ```go
+  type Component interface { Operation() string }
+  type Leaf struct { Name string }
+  type Composite struct { Children []Component }
+  ```
 - **When to use:** File systems, UI component trees, org hierarchies, DOM
-- **When NOT:** Leaf and composite need fundamentally different behavior
-- **Real-world:** `io.MultiReader`, `io.MultiWriter`, file system APIs
+- **Real-world:** `io.MultiReader`, `io.MultiWriter`
 
 ## Bridge
 - **Intent:** Separate abstraction from implementation — vary independently
-- **Problem:** Cartesian explosion of classes (3 shapes x 4 renderers = 12 classes)
-- **Solution:** Abstraction holds interface field → swap implementations
-- **Go idiom:** Struct with interface field (natural composition):
-  ```go
-  type Notification struct { sender Sender }  // Bridge
-  type Sender interface { Send(msg string) }  // Implementation
-  ```
+- **Problem:** Cartesian explosion (3 shapes x 4 renderers = 12 classes)
+- **Go idiom:** `type Notification struct { sender Sender }` — struct with interface field
 - **When to use:** Multi-dimensional variation, runtime implementation swap
-- **When NOT:** Single dimension of variation — simple interface suffices
-- **Real-world:** `database/sql` (Driver interface), `io.Writer` abstraction
+- **Real-world:** `database/sql` Driver interface, `io.Writer` abstraction
+
+## Flyweight
+- **Intent:** Share common state to reduce memory for large numbers of similar objects
+- **Intrinsic state:** shared (font, color, tile type) | **Extrinsic state:** unique per instance
+- **When to use:** Thousands of similar objects with shared properties
+- **Real-world:** Game tiles, character glyphs, cached DB connections, string interning
+- Go: `type FlyweightFactory struct { cache map[string]*Flyweight }` / `func (f *FlyweightFactory) Get(key string) *Flyweight { if fw, ok := f.cache[key]; ok { return fw }; fw := &Flyweight{key}; f.cache[key] = fw; return fw }`
 
 ## Structural Pattern Selector
 
@@ -78,3 +69,4 @@ How objects compose into larger structures while keeping flexibility. Key distin
 | Control access | Proxy | Lazy load, auth gate, audit log |
 | Tree/recursive structure | Composite | Files/folders, UI components |
 | Vary 2 dimensions independently | Bridge | Shape x Renderer, Notification x Channel |
+| Thousands of similar objects | Flyweight | Game entities, cached instances |

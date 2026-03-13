@@ -72,3 +72,21 @@
 - Priority tiers: P0 instant, P1 near-real-time, P2 batched digests
 - User preferences: per-channel opt-in, quiet hours, frequency caps
 - Tracking: Sent → Delivered → Read; retry with exponential backoff + DLQ
+
+## Online Judge (LeetCode-style)
+- Submission → Queue → Sandbox executor (Docker/Firecracker) → Judge → Result
+- Sandbox: CPU/memory/time limits, seccomp syscall filtering, network isolation
+- Languages: compile + run in isolated container; diff output against expected
+- Scale: queue absorbs burst; pre-warmed containers cut cold-start latency
+
+## CI/CD Platform (GitHub Actions-style)
+- Trigger → Job scheduler → Runner pool → Artifact storage → Deploy
+- Runner: ephemeral VMs/containers; workspace isolation per job
+- DAG execution: parallel steps within jobs; explicit job dependencies
+- Secrets: encrypted at rest, injected as env vars, audit-logged
+
+## Grocery Delivery (Amazon Fresh-style)
+- Inventory: per-store real-time stock + warehouse; reserve on cart add
+- Delivery slots: time-window capacity planning; geofenced service areas
+- Last-mile: route optimization (TSP/VRP); driver assigned by proximity + capacity
+- Cold chain: temperature monitoring; separate frozen/chilled/ambient picking

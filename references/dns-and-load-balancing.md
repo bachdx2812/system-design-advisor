@@ -48,3 +48,12 @@
 - WebSocket → L7 with sticky sessions
 - Global → DNS latency-based + regional L7
 - Session affinity needed → consistent hashing or cookie-based
+
+## Multi-Region & Global Traffic
+- GSLB: DNS-based routing to nearest region; health-aware
+- Anycast: same IP from multiple PoPs; BGP routes to nearest automatically
+- GeoDNS: resolve to region-specific IP by client location; fallback to default
+- Active-active: all regions serve traffic; conflict resolution needed (CRDTs/LWW)
+- Active-passive: one primary region; failover via low DNS TTL (seconds)
+- Latency-based routing: Route 53 / Cloudflare measures RTT, routes to fastest
+- Health checks: probe from multiple locations; auto-failover on failure

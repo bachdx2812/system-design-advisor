@@ -86,8 +86,10 @@ References: [databases.md](references/databases.md), [caching-and-cdn.md](refere
 
 ## Output Format
 
-Present the plan inline. After presenting, ask: "Save this plan to a file?"
-If yes, write to `plans/system-design-{name}.md` in the current project.
+Present the plan inline. After presenting, offer:
+- "Save this plan to a file?" → write to `plans/system-design-{name}.md`
+- "Need help with design patterns for any component?" → bridges to `/design-patterns-advisor`
+- "Want to review an existing implementation?" → bridges to `/architecture-reviewer`
 
 ## Source
 

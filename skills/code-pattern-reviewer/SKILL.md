@@ -28,6 +28,9 @@ Review project code for design pattern usage, anti-patterns, and improvement opp
 | Shared mutable state | Global variables, singletons everywhere | Golden Hammer (Singleton) |
 | Scattered error handling | `try/catch` without pattern | Missing Chain of Responsibility |
 | Tight service coupling | Direct imports across bounded contexts | Missing Facade/Mediator |
+| Circular imports | Dependency analysis | Circular dependency → Mediator/DI |
+| Empty catch blocks | `catch.*\{\s*\}` | Missing error handling pattern |
+| Shared DB across services | Cross-service DB imports | Missing Database per Service |
 
 ## Reference Routing
 
@@ -71,3 +74,6 @@ Load references based on findings:
 ```
 
 Severity levels: **Critical** (blocks scalability/maintainability), **High** (significant tech debt), **Medium** (code smell), **Low** (style/minor improvement).
+
+## Follow-up Bridges
+After presenting findings, offer: "Want me to explain any of these patterns in detail? (`/design-patterns-advisor`) Or generate an implementation plan for a specific refactor? (`/pattern-implementation-guide`)"

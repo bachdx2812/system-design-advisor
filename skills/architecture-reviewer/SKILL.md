@@ -101,6 +101,9 @@ graph TD
 - **Architecture Score:** [X/10 with justification]
 ```
 
+## Follow-up Bridges
+After review, offer: "Want me to dive deeper into any finding? (`/system-design-advisor`) Or review your code-level patterns too? (`/code-pattern-reviewer`)"
+
 ## Source
 
 Principles from [The Engineer's Handbook](https://bachdx-learning-hub.vercel.app/).

@@ -22,13 +22,33 @@ AI coding assistant skills for system design — powered by knowledge from [The 
 | **pattern-implementation-guide** | Generate implementation plans with code examples and class diagrams for applying patterns | "How do I implement Strategy pattern in TypeScript?", "Add CQRS to my service" |
 | **code-pattern-reviewer** | Auto-scan code for anti-patterns, God Objects, and pattern improvement opportunities | "Review my code for patterns", "Is this good design?" |
 
+### Which Skill When?
+
+```
+📚 Learning / Studying
+   → /system-design-advisor        "Explain CAP theorem"
+   → /design-patterns-advisor      "When to use Factory vs Builder?"
+
+🏗️ Building a New System
+   → /design-plan-generator        "Design a chat system for 10M DAU"
+   → /pattern-implementation-guide "Implement CQRS for my order service"
+
+🔍 Reviewing Existing Code
+   → /architecture-reviewer        "Is my system scalable?"
+   → /code-pattern-reviewer        "Review my code for anti-patterns"
+
+❓ Making a Decision
+   → /system-design-advisor        "SQL or NoSQL for my use case?"
+   → /design-patterns-advisor      "Strategy vs State pattern?"
+```
+
 ### Interactive Clarifying Questions
 
-All skills ask targeted questions before responding to deliver more relevant answers:
+All skills ask targeted questions before responding:
 
-- **system-design-advisor** — Asks about your scale, access pattern, and constraints when context is missing. Skips for conceptual questions like "explain CAP theorem".
-- **design-plan-generator** — Always asks 2-5 scoping questions (target DAU, read/write ratio, consistency model, tech constraints) before generating a plan.
-- **architecture-reviewer** — Gathers context about your scale targets, top concerns, SLA, and planned changes before scanning. Say "just scan it" to skip.
+- **system-design-advisor** — Asks about scale, access pattern, constraints. Skips for conceptual questions.
+- **design-plan-generator** — Asks 2-5 scoping questions (DAU, read/write ratio, consistency, tech constraints).
+- **architecture-reviewer** — Gathers context about scale targets, concerns, SLA. Say "just scan it" to skip.
 
 ## Knowledge Base
 

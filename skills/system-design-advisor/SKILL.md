@@ -23,7 +23,7 @@ Before responding, check if the question lacks critical context. If so, ask 1-3 
 | Comparing options | "What's your current stack? (helps narrow recommendation)" |
 | Architecture unclear | "Is this a monolith, microservices, or serverless setup?" |
 
-**Skip clarification if:** The question is conceptual ("explain CAP theorem"), the user provides sufficient context, or the question has a universal answer.
+**Skip clarification if:** The question is conceptual ("explain CAP theorem"), a direct comparison ("X vs Y?"), the user provides sufficient context, or the question has a universal answer.
 
 ### Step 1: Answer with Structure
 

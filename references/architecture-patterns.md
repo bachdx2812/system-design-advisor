@@ -81,3 +81,20 @@
 - SLO: target (99.95% availability)
 - SLA: contractual (includes penalties)
 - Error budget: SLO surplus → invest in velocity
+
+## Event Sourcing Deep Dive
+- Event store: append-only log; events = source of truth; rebuild state by replay
+- Projections: materialize read models from event stream; async or sync
+- Snapshots: periodic state capture to avoid full replay; use snapshot + events since
+- Compaction: archive old events; keep snapshots for active aggregates
+## Distributed Tracing
+- Trace = tree of spans; span = unit of work with start/end + metadata
+- Propagation: inject trace-id + span-id into HTTP headers / gRPC metadata
+- Sampling: head-based (decide at trace start) vs tail-based (decide after complete)
+- Tools: Jaeger, Zipkin, OpenTelemetry; storage: Elasticsearch or Cassandra
+
+## Service Mesh
+- Sidecar proxy per pod (Envoy); data plane = traffic; control plane = config
+- Features: mTLS, LB, circuit breaking, retry, observability — zero app code changes
+- Tools: Istio (feature-rich), Linkerd (lightweight), Consul Connect
+- When: 50+ microservices needing consistent cross-cutting concerns
